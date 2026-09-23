@@ -1,0 +1,453 @@
+<title>Fatih Şener</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    --zemin: #0E1512;
+    --yuzey: #14201B;
+    --cizgi: #22322A;
+    --metin: #E7EDE9;
+    --soluk: #9BB0A6;
+    --vurgu: #E0A458;
+    --yesil: #7FB3A0;
+    --baslik: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+    --govde: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--zemin);
+    color: var(--metin);
+    font-family: var(--govde);
+    font-size: 17px;
+    line-height: 1.65;
+    padding-inline: 24px;
+  }
+
+  .sayfa {
+    max-width: 960px;
+    margin-inline: auto;
+    padding-block: 0 64px;
+  }
+
+  a { color: var(--vurgu); }
+  a:hover { color: #F0BE7C; }
+  a:focus-visible,
+  .dugme:focus-visible { outline: 2px solid var(--yesil); outline-offset: 3px; }
+
+  /* Üst bant */
+  .ust {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-block: 18px;
+    background: var(--zemin);
+    border-bottom: 1px solid var(--cizgi);
+  }
+  .ad {
+    font-family: var(--baslik);
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    margin-right: auto;
+  }
+  .ust nav { display: flex; gap: 18px; flex-wrap: wrap; }
+  .ust nav a {
+    color: var(--soluk);
+    text-decoration: none;
+    font-size: 15px;
+  }
+  .ust nav a:hover { color: var(--metin); }
+
+  /* Giriş */
+  .giris { padding-block: 72px 56px; }
+  .etiket {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--vurgu);
+    margin: 0 0 20px;
+  }
+  h1 {
+    font-family: var(--baslik);
+    font-weight: 700;
+    font-size: clamp(34px, 6vw, 60px);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+    margin: 0 0 24px;
+    max-width: 16ch;
+  }
+  .ozet {
+    margin: 0;
+    max-width: 62ch;
+    color: #C8D5CE;
+    font-size: clamp(17px, 2.2vw, 19px);
+  }
+  .dugmeler { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .dugme {
+    display: inline-block;
+    padding: 14px 24px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .dugme.dolu { background: var(--vurgu); color: #10180F; }
+  .dugme.dolu:hover { background: #F0BE7C; color: #10180F; }
+  .dugme.bos { border: 1px solid var(--cizgi); color: var(--metin); }
+  .dugme.bos:hover { border-color: var(--yesil); color: var(--metin); }
+
+  /* Şu an */
+  .simdi {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    padding: 26px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 16px;
+  }
+  .simdi h2 { margin: 0; font-family: var(--baslik); font-size: 20px; font-weight: 700; }
+  .simdi p { margin: 0; color: #C8D5CE; }
+  .simdi dl { margin: 0; display: grid; gap: 10px; }
+  .simdi div { display: flex; gap: 12px; font-size: 15px; }
+  .simdi dt { color: var(--soluk); min-width: 116px; }
+  .simdi dd { margin: 0; color: var(--metin); }
+
+  /* Bölüm başlıkları */
+  section { padding-block: 56px 0; }
+  .bolum-basi {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .bolum-basi h2 {
+    font-family: var(--baslik);
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .bolum-basi span { color: var(--soluk); font-size: 15px; }
+
+  /* Projeler */
+  .projeler { display: grid; gap: 1px; background: var(--cizgi); border-block: 1px solid var(--cizgi); }
+  .proje {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    padding: 28px 4px;
+    background: var(--zemin);
+  }
+  .proje h3 {
+    font-family: var(--baslik);
+    font-size: 21px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .proje h3 .rozet {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--yesil);
+    border: 1px solid #2F4A3E;
+    border-radius: 999px;
+    padding: 3px 9px;
+    margin-left: 10px;
+    vertical-align: 3px;
+    white-space: nowrap;
+  }
+  .proje p { margin: 0; color: #C8D5CE; max-width: 68ch; }
+  .araclar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--soluk);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .araclar li::after { content: " ·"; color: #3A4F45; }
+  .araclar li:last-child::after { content: ""; }
+  .proje a { font-family: var(--mono); font-size: 14px; }
+
+  /* Yetenekler */
+  .yetenekler { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .yetenek h3 {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--vurgu);
+    margin: 0 0 12px;
+    font-weight: 500;
+  }
+  .yetenek ul { margin: 0; padding-left: 18px; color: #C8D5CE; }
+  .yetenek li { margin-bottom: 6px; }
+
+  /* İletişim */
+  .iletisim {
+    margin-top: 56px;
+    padding: 36px 28px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 18px;
+  }
+  .iletisim h2 {
+    font-family: var(--baslik);
+    font-size: clamp(24px, 4vw, 32px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+  }
+  .iletisim p { margin: 0 0 24px; color: #C8D5CE; max-width: 54ch; }
+  .adres {
+    font-family: var(--mono);
+    font-size: 16px;
+    color: var(--metin);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    align-items: center;
+  }
+  .kopyala {
+    font-family: var(--govde);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--zemin);
+    background: var(--yesil);
+    border: 0;
+    border-radius: 8px;
+    padding: 9px 14px;
+    cursor: pointer;
+  }
+  .kopyala:hover { background: #96C6B4; }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--cizgi);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    color: var(--soluk);
+    font-size: 14px;
+  }
+  footer span:last-child { margin-left: auto; }
+
+  @media (min-width: 720px) {
+    .simdi { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: start; gap: 32px; }
+    .proje { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); align-items: start; column-gap: 40px; }
+    .proje h3 { grid-column: 1 / -1; }
+    .yetenekler { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+    .iletisim { padding: 44px 40px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="sayfa">
+
+  <header class="ust">
+    <span class="ad">Fatih Şener</span>
+    <nav>
+      <a href="#projeler">Projeler</a>
+      <a href="#yetenekler">Yetenekler</a>
+      <a href="#iletisim">İletişim</a>
+      <a href="https://github.com/Fatih-sener">GitHub</a>
+    </nav>
+  </header>
+
+  <section class="giris">
+    <p class="etiket">Bilgisayar mühendisi · 2026 mezunu</p>
+    <h1>Mobil uygulama ve yapay zekâ projeleri geliştiriyorum.</h1>
+    <p class="ozet">Flutter ve Firebase ile uzaktan rehabilitasyon uygulaması, YOLO ile nesne tespiti, PyTorch ile pekiştirmeli öğrenme. Aşağıdaki projelerin hepsinin kodu GitHub'da açık duruyor.</p>
+    <div class="dugmeler">
+      <a class="dugme dolu" href="#projeler">Projelere bak</a>
+      <a class="dugme bos" href="https://github.com/Fatih-sener">GitHub profilim</a>
+    </div>
+  </section>
+
+  <div class="simdi">
+    <div>
+      <h2>Şu an</h2>
+      <p>İNOSENS'te yazılım stajyeriyim. D-AKTİVES adlı uzaktan rehabilitasyon uygulamasında hekim ile danışanı birbirine bağlayan modülü geliştiriyorum.</p>
+    </div>
+    <dl>
+      <div><dt>Uygulama</dt><dd>Flutter, Firebase</dd></div>
+      <div><dt>Görüşme</dt><dd>WebRTC ile sesli ve görüntülü arama</dd></div>
+      <div><dt>Yapay zekâ</dt><dd>Öğün fotoğrafından kalori tahmini</dd></div>
+      <div><dt>Test</dt><dd>137 birim ve arayüz testi</dd></div>
+    </dl>
+  </div>
+
+  <section id="projeler">
+    <div class="bolum-basi">
+      <h2>Projeler</h2>
+      <span>Beşinin de kodu açık</span>
+    </div>
+
+    <div class="projeler">
+
+      <article class="proje">
+        <h3>Teknofest İKA<span class="rozet">Bitirme projesi</span></h3>
+        <p>Otonom insansız kara aracının algılama yazılımı. YOLOv8 ile engelleri buluyor, stereo kamerayla mesafelerini ölçüyor, hızlarına bakıp sabit mi hareketli mi olduklarına karar veriyor. Yol planlama tarafında dinamik pencere yaklaşımı, atış görevinde hedef seçimi ve pan-tilt PID kontrol var.</p>
+        <div>
+          <ul class="araclar">
+            <li>Python</li><li>YOLOv8</li><li>OpenCV</li><li>ROS2</li><li>Webots</li>
+          </ul>
+          <a href="https://github.com/Fatih-sener/teknofest-ika">github.com/Fatih-sener/teknofest-ika</a>
+        </div>
+      </article>
+
+      <article class="proje">
+        <h3>DQN ile otonom sürüş</h3>
+        <p>Webots simülatöründeki bir araç, üç mesafe sensöründen gelen veriye bakarak çarpmadan ilerlemeyi deneme yanılmayla öğreniyor. Sinir ağı, deneyim tekrarı ve eğitim döngüsü PyTorch ile sıfırdan yazıldı; 500 bölüm eğitildi.</p>
+        <div>
+          <ul class="araclar">
+            <li>PyTorch</li><li>Pekiştirmeli öğrenme</li><li>Webots</li>
+          </ul>
+          <a href="https://github.com/Fatih-sener/webots-dqn-otonom-surus">github.com/Fatih-sener/webots-dqn-otonom-surus</a>
+        </div>
+      </article>
+
+      <article class="proje">
+        <h3>WeatherWise<span class="rozet">Hackathon</span></h3>
+        <p>Dört sınıflandırıcı hava verisine bakıp şemsiye gerekip gerekmediğine, ne giyileceğine ve dışarı çıkmaya uygun olup olmadığına karar veriyor. Claude API bu kararları kullanıcıya tek cümlelik bir öneriye çeviriyor.</p>
+        <div>
+          <ul class="araclar">
+            <li>scikit-learn</li><li>XGBoost</li><li>Flask</li><li>Streamlit</li>
+          </ul>
+          <a href="https://github.com/Fatih-sener/weatherwise">github.com/Fatih-sener/weatherwise</a>
+        </div>
+      </article>
+
+      <article class="proje">
+        <h3>Algı — sesli asistan</h3>
+        <p>Türkçe sesli komutlarla çalışan masaüstü asistanı. Konuşmayı yazıya çeviriyor; saat söyleme, arama yapma, uygulama açma ve sesli not alma komutlarını yerine getiriyor, kalan soruları bir dil modeline soruyor ve cevabı sesli okuyor.</p>
+        <div>
+          <ul class="araclar">
+            <li>Python</li><li>Ses tanıma</li><li>gTTS</li><li>Dil modeli</li>
+          </ul>
+          <a href="https://github.com/Fatih-sener/algi-sesli-asistan">github.com/Fatih-sener/algi-sesli-asistan</a>
+        </div>
+      </article>
+
+      <article class="proje">
+        <h3>Kütüphanesiz bilgisayarlı görme</h3>
+        <p>Hazır görüntü işleme kütüphanesi kullanmadan yazılmış masaüstü uygulaması. Gri dönüşüm, histogram, Öklid ve Mahalanobis uzaklıklı K-Means kümeleme ve Sobel kenar bulma algoritmalarının hepsi piksel düzeyinde elle yazıldı.</p>
+        <div>
+          <ul class="araclar">
+            <li>C#</li><li>WPF</li><li>K-Means</li><li>Sobel</li>
+          </ul>
+          <a href="https://github.com/Fatih-sener/bilgisayarli-gorme-wpf">github.com/Fatih-sener/bilgisayarli-gorme-wpf</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="yetenekler">
+    <div class="bolum-basi">
+      <h2>Yetenekler</h2>
+    </div>
+    <div class="yetenekler">
+      <div class="yetenek">
+        <h3>Yapay zekâ</h3>
+        <ul>
+          <li>PyTorch</li>
+          <li>YOLOv8 ve YOLOv11</li>
+          <li>scikit-learn, XGBoost</li>
+          <li>Dil modelleri ve istem tasarımı</li>
+        </ul>
+      </div>
+      <div class="yetenek">
+        <h3>Uygulama</h3>
+        <ul>
+          <li>Dart ve Flutter</li>
+          <li>Firebase, Firestore</li>
+          <li>WebRTC</li>
+          <li>Git</li>
+        </ul>
+      </div>
+      <div class="yetenek">
+        <h3>Diller</h3>
+        <ul>
+          <li>Python</li>
+          <li>C#</li>
+          <li>Java</li>
+          <li>SQL</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="iletisim" id="iletisim">
+    <h2>Birlikte çalışalım</h2>
+    <p>Yapay zekâ ve mobil uygulama tarafında junior pozisyonlara açığım. Yazarsanız aynı gün dönerim.</p>
+    <div class="adres">
+      <span id="eposta">senerfatih22@gmail.com</span>
+      <button class="kopyala" type="button" id="kopyalaDugmesi">Adresi kopyala</button>
+      <a href="https://github.com/Fatih-sener">github.com/Fatih-sener</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>Fatih Şener · Bilgisayar Mühendisi</span>
+    <span>2026</span>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var dugme = document.getElementById('kopyalaDugmesi');
+    var eposta = document.getElementById('eposta');
+    if (!dugme || !eposta) { return; }
+    dugme.addEventListener('click', function () {
+      var metin = eposta.textContent.trim();
+      var bildir = function (yazi) {
+        dugme.textContent = yazi;
+        setTimeout(function () { dugme.textContent = 'Adresi kopyala'; }, 2000);
+      };
+      var secerekGoster = function () {
+        try {
+          var aralik = document.createRange();
+          aralik.selectNodeContents(eposta);
+          var secim = window.getSelection();
+          secim.removeAllRanges();
+          secim.addRange(aralik);
+          bildir('Seçildi, kopyalayın');
+        } catch (hata) {
+          bildir('Kopyalanamadı');
+        }
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(metin).then(function () {
+          bildir('Kopyalandı');
+        }, secerekGoster);
+      } else {
+        secerekGoster();
+      }
+    });
+  })();
+</script>
