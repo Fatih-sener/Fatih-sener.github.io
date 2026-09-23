@@ -46,13 +46,25 @@
 
   /* ── Üst menü ─────────────────────────────── */
   .ust {
-    position: sticky; top: 0; z-index: 40;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 40;
     display: flex; align-items: center; gap: 12px;
     padding-block: 12px;
     padding-top: calc(12px + env(safe-area-inset-top, 0px));
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background-color 0.25s ease, border-color 0.25s ease, backdrop-filter 0.25s ease;
+  }
+  /* Sayfa kayınca okunaklı olsun diye koyulaşır. */
+  .ust.kati {
     background: rgba(11, 11, 14, 0.93);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(42, 42, 52, 0.8);
+    border-bottom-color: rgba(42, 42, 52, 0.8);
+  }
+  .ust .marka, .ust nav a { text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55); }
+  .ust:not(.kati) .ara, .ust:not(.kati) .simge-dugme {
+    background: rgba(11, 11, 14, 0.42);
+    border-color: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(6px);
   }
   .marka { font-family: var(--serif); font-size: 24px; letter-spacing: 0.2em; color: var(--altin); line-height: 1; }
   .ust nav { display: none; gap: 18px; font-size: 14px; color: var(--soluk); }
@@ -87,15 +99,22 @@
   @media (min-width: 760px) { .ust nav { display: flex; } .ara input { width: 150px; } }
 
   /* ── Tanıtım ──────────────────────────────── */
-  .tanitim { position: relative; overflow: hidden; border-bottom: 1px solid var(--cizgi); }
-  .tanitim .fon { position: absolute; inset: 0; background-size: cover; background-position: center 28%; opacity: 0.55; }
+  .tanitim { position: relative; overflow: hidden; border-bottom: 1px solid var(--cizgi); min-height: 78vh; display: flex; align-items: flex-end; }
+  .tanitim .fon { position: absolute; inset: 0; background-size: cover; background-position: center 22%; opacity: 0.92; }
   .tanitim .perde {
     position: absolute; inset: 0;
     background:
-      linear-gradient(to right, rgba(11,11,14,0.97) 0%, rgba(11,11,14,0.78) 48%, rgba(11,11,14,0.28) 100%),
-      linear-gradient(to top, var(--gece) 2%, rgba(11,11,14,0) 62%);
+      linear-gradient(to right, rgba(11,11,14,0.92) 0%, rgba(11,11,14,0.55) 46%, rgba(11,11,14,0) 82%),
+      linear-gradient(to top, var(--gece) 1%, rgba(11,11,14,0.15) 46%, rgba(11,11,14,0) 70%),
+      linear-gradient(to bottom, rgba(11,11,14,0.55) 0%, rgba(11,11,14,0) 24%);
   }
-  .tanitim-ic { position: relative; padding-block: 44px 34px; max-width: 620px; }
+  .tanitim-ic {
+    position: relative;
+    padding-top: calc(96px + env(safe-area-inset-top, 0px));
+    padding-bottom: 38px;
+    max-width: 620px;
+  }
+  @media (min-width: 900px) { .tanitim { min-height: 86vh; } }
   .rozet { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--altin); display: inline-flex; align-items: center; gap: 9px; margin: 0; }
   .rozet::before { content: ""; width: 20px; height: 1px; background: var(--altin); }
   .tanitim h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 8.5vw, 76px); line-height: 0.95; letter-spacing: -0.015em; margin: 12px 0 0; text-wrap: balance; }
@@ -835,6 +854,15 @@
       ray.scrollBy({ left: yon * ray.clientWidth * 0.85, behavior: "smooth" });
     });
   });
+
+  /* ── Üst bar: kayınca koyulaşsın ──────────── */
+  var ustBar = document.querySelector(".ust");
+  function barDurumu() {
+    if (window.scrollY > 40) { ustBar.classList.add("kati"); }
+    else { ustBar.classList.remove("kati"); }
+  }
+  window.addEventListener("scroll", barDurumu, { passive: true });
+  barDurumu();
 
   /* ── Başlangıç ────────────────────────────── */
   katalogGuncelle();
