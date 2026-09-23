@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>İletişim — Nabız</title>
+<meta name="description" content="Nabız demo talebi. İşletmenizi anlatın, kurulum için sizi arayalım.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+
+<header class="ust">
+  <div class="kutu ust-ic">
+    <a class="marka" href="index.html"><span class="isaret" aria-hidden="true">N</span> Nabız</a>
+    <nav>
+      <a href="index.html">Ana sayfa</a>
+      <a href="ozellikler.html">Özellikler</a>
+      <a href="fiyatlar.html">Fiyatlar</a>
+      <a href="sss.html">Sık sorulanlar</a>
+    </nav>
+    <div class="ust-sag">
+      <a class="dugme dolu kucuk" href="iletisim.html" aria-current="page">Demo isteyin</a>
+      <button class="menu-dugme" type="button" id="menuDugmesi" aria-expanded="false" aria-controls="gezinmeAcilir" aria-label="Menüyü aç">☰</button>
+    </div>
+  </div>
+  <div class="kutu gezinme-acilir" id="gezinmeAcilir" hidden>
+    <a href="index.html">Ana sayfa</a>
+    <a href="ozellikler.html">Özellikler</a>
+    <a href="fiyatlar.html">Fiyatlar</a>
+    <a href="sss.html">Sık sorulanlar</a>
+    <a href="iletisim.html">İletişim</a>
+  </div>
+</header>
+
+<main>
+  <div class="kutu sayfa-basi">
+    <p class="etiket">İletişim</p>
+    <h1>Demo talebinizi bırakın.</h1>
+    <p class="govde-buyuk">Formu doldurun, hesabınızı sizin hizmetlerinizle kurup 20 dakikalık bir görüşmede gösterelim. Kredi kartı istemiyoruz.</p>
+  </div>
+
+  <section class="kutu dar">
+    <div class="iletisim">
+      <div>
+        <form class="form" id="demoForm" novalidate>
+          <div class="form-ikili">
+            <div class="alan" id="adAlani">
+              <label for="ad">Ad soyad</label>
+              <input type="text" id="ad" name="ad" autocomplete="name" placeholder="Elif Kaya">
+              <p class="hata" hidden></p>
+            </div>
+            <div class="alan" id="epostaAlani">
+              <label for="eposta">E-posta</label>
+              <input type="email" id="eposta" name="eposta" autocomplete="email" placeholder="elif@ornek.com">
+              <p class="hata" hidden></p>
+            </div>
+          </div>
+
+          <div class="form-ikili">
+            <div class="alan" id="isletmeAlani">
+              <label for="isletme">İşletme türü</label>
+              <select id="isletme" name="isletme">
+                <option value="">Seçin</option>
+                <option value="diyetisyen">Diyetisyen</option>
+                <option value="fizyoterapist">Fizyoterapist</option>
+                <option value="kuafor">Kuaför / güzellik</option>
+                <option value="psikolog">Psikolog / danışman</option>
+                <option value="klinik">Klinik</option>
+                <option value="diger">Diğer</option>
+              </select>
+              <p class="hata" hidden></p>
+            </div>
+            <div class="alan">
+              <label for="kisi">Kaç kişi çalışıyor?</label>
+              <select id="kisi" name="kisi">
+                <option value="1">Sadece ben</option>
+                <option value="2-6">2–6 kişi</option>
+                <option value="7+">7 ve üzeri</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="alan">
+            <label for="mesaj">Eklemek istediğiniz bir şey var mı?</label>
+            <textarea id="mesaj" name="mesaj" placeholder="Şu an randevuları nasıl takip ediyorsunuz?"></textarea>
+            <p class="ipucu">İsteğe bağlı. Görüşmeye hazırlıklı gelmemize yardımcı oluyor.</p>
+          </div>
+
+          <button class="dugme dolu" type="submit">Demo talebini gönder</button>
+          <p class="ipucu">Bu form örnek bir tasarımdır; bilgiler hiçbir yere gönderilmez, tarayıcınızda kalır.</p>
+        </form>
+
+        <div class="basari" id="formBasari" tabindex="-1" hidden>
+          <b>Talebiniz alındı, <span data-ad></span>.</b>
+          <p>Bu bir tasarım örneği olduğu için gerçek bir kayıt oluşturulmadı. Gerçek üründe bu aşamada size bir onay e-postası gider ve ekip bir iş günü içinde arardı.</p>
+        </div>
+      </div>
+
+      <aside>
+        <div class="kart">
+          <h3>Doğrudan ulaşın</h3>
+          <div class="bilgi-liste" style="margin-top: 6px;">
+            <div class="bilgi">
+              <b>E-posta</b>
+              <span>merhaba@nabiz.ornek</span>
+            </div>
+            <div class="bilgi">
+              <b>Telefon</b>
+              <span>0850 000 00 00</span>
+            </div>
+            <div class="bilgi">
+              <b>Çalışma saatleri</b>
+              <span>Hafta içi 09.00 – 18.00</span>
+            </div>
+            <div class="bilgi">
+              <b>Adres</b>
+              <span>Örnek Mah. Deneme Cad. No: 1, İstanbul</span>
+            </div>
+          </div>
+          <p style="font-size: 13.5px; color: var(--soluk); margin-top: 6px;">İletişim bilgileri örnektir.</p>
+        </div>
+
+        <div class="kart" style="margin-top: 16px;">
+          <h3>Görüşmede ne oluyor?</h3>
+          <ul class="liste">
+            <li>Hizmetlerinizi birlikte tanımlıyoruz</li>
+            <li>Randevu bağlantınızı oluşturuyoruz</li>
+            <li>Hatırlatma metnini sizin dilinize göre ayarlıyoruz</li>
+            <li>14 günlük deneme aynı gün başlıyor</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="kutu dar">
+    <div class="bolum-basi">
+      <p class="etiket">Önce okumak isterseniz</p>
+      <h2>Belki cevabı zaten yazdık.</h2>
+    </div>
+    <div class="kartlar">
+      <article class="kart">
+        <h3>Kurulum nasıl işliyor?</h3>
+        <p>Hesabın açılmasından ilk randevuya kadar bütün adımlar.</p>
+        <p><a href="sss.html#kurulum">Sık sorulanlara bakın →</a></p>
+      </article>
+      <article class="kart">
+        <h3>Hangi plan bana uygun?</h3>
+        <p>Kullanıcı sayısı ve mesaj hakkına göre üç plan.</p>
+        <p><a href="fiyatlar.html">Fiyatları görün →</a></p>
+      </article>
+      <article class="kart">
+        <h3>Ürün ne yapıyor?</h3>
+        <p>Randevu, danışan kartı, tahsilat ve ekip takvimi.</p>
+        <p><a href="ozellikler.html">Özellikleri görün →</a></p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="kutu footer-ic">
+    <div class="footer-sut">
+      <a class="marka" href="index.html"><span class="isaret" aria-hidden="true">N</span> Nabız</a>
+      <p style="color: var(--soluk); font-size: 15px;">Küçük işletmeler için randevu ve danışan takibi.</p>
+    </div>
+    <div class="footer-sut">
+      <b>Ürün</b>
+      <a href="ozellikler.html">Özellikler</a>
+      <a href="fiyatlar.html">Fiyatlar</a>
+      <a href="sss.html">Sık sorulanlar</a>
+    </div>
+    <div class="footer-sut">
+      <b>Destek</b>
+      <a href="iletisim.html">Demo isteyin</a>
+      <a href="sss.html#kurulum">Kurulum</a>
+      <a href="iletisim.html">İletişim</a>
+    </div>
+    <div class="footer-sut">
+      <b>Kimler kullanır</b>
+      <a href="ozellikler.html#kimler">Diyetisyen</a>
+      <a href="ozellikler.html#kimler">Fizyoterapist</a>
+      <a href="ozellikler.html#kimler">Kuaför ve güzellik</a>
+    </div>
+  </div>
+  <div class="kutu footer-alt">
+    <span>Nabız örnek bir ürün tasarımıdır; gerçek bir hizmet değildir.</span>
+    <span class="sag">Tasarım ve kod: Fatih Şener</span>
+  </div>
+</footer>
+
+<script src="betik.js"></script>
+</body>
+</html>

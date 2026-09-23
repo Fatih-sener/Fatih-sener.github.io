@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nabız — randevu ve danışan takibi</title>
+<meta name="description" content="Kuaför, diyetisyen, fizyoterapist ve küçük klinikler için randevu, danışan kaydı ve hatırlatma. Nabız ile randevular tek ekranda.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="stil.css">
+</head>
+<body>
+
+<header class="ust">
+  <div class="kutu ust-ic">
+    <a class="marka" href="index.html"><span class="isaret" aria-hidden="true">N</span> Nabız</a>
+    <nav>
+      <a href="index.html" aria-current="page">Ana sayfa</a>
+      <a href="ozellikler.html">Özellikler</a>
+      <a href="fiyatlar.html">Fiyatlar</a>
+      <a href="sss.html">Sık sorulanlar</a>
+    </nav>
+    <div class="ust-sag">
+      <a class="dugme dolu kucuk" href="iletisim.html">Demo isteyin</a>
+      <button class="menu-dugme" type="button" id="menuDugmesi" aria-expanded="false" aria-controls="gezinmeAcilir" aria-label="Menüyü aç">☰</button>
+    </div>
+  </div>
+  <div class="kutu gezinme-acilir" id="gezinmeAcilir" hidden>
+    <a href="index.html">Ana sayfa</a>
+    <a href="ozellikler.html">Özellikler</a>
+    <a href="fiyatlar.html">Fiyatlar</a>
+    <a href="sss.html">Sık sorulanlar</a>
+    <a href="iletisim.html">İletişim</a>
+  </div>
+</header>
+
+<main>
+  <section class="kutu giris">
+    <div class="giris-yazi">
+      <p class="etiket">Randevu ve danışan takibi</p>
+      <h1>Randevular telefonda değil, tek ekranda toplansın.</h1>
+      <p class="govde-buyuk">Nabız; kuaför, diyetisyen, fizyoterapist ve küçük klinikler için randevu defterini, danışan kayıtlarını ve hatırlatma mesajlarını tek yerde toplar. Kurulum gerekmez, tarayıcıdan çalışır.</p>
+      <div class="dugmeler">
+        <a class="dugme dolu" href="iletisim.html">Ücretsiz demo isteyin</a>
+        <a class="dugme bos" href="ozellikler.html">Nasıl çalışıyor?</a>
+      </div>
+      <div class="guven">
+        <span>14 gün ücretsiz deneme</span>
+        <span>Kredi kartı istenmez</span>
+        <span>İstediğiniz an iptal</span>
+      </div>
+    </div>
+
+    <div class="ekran" aria-label="Nabız randevu ekranının örnek görünümü" role="img">
+      <div class="ekran-ust" aria-hidden="true">
+        <i></i><i></i><i></i>
+        <b>Bugün · 14 Mart Cuma</b>
+      </div>
+      <div class="ekran-ic" aria-hidden="true">
+        <div class="randevu">
+          <span class="saat">09:30</span>
+          <span><b>Elif Kaya</b><br><span style="font-size: 13.5px; color: var(--soluk);">İlk görüşme · 45 dk</span></span>
+          <span class="durum">Onaylı</span>
+        </div>
+        <div class="randevu">
+          <span class="saat">11:00</span>
+          <span><b>Mert Aydın</b><br><span style="font-size: 13.5px; color: var(--soluk);">Kontrol · 30 dk</span></span>
+          <span class="durum bekliyor">Onay bekliyor</span>
+        </div>
+        <div class="randevu">
+          <span class="saat">13:15</span>
+          <span><b>Seda Yılmaz</b><br><span style="font-size: 13.5px; color: var(--soluk);">Takip seansı · 60 dk</span></span>
+          <span class="durum">Onaylı</span>
+        </div>
+        <div class="randevu">
+          <span class="saat">16:00</span>
+          <span><b>Boş</b><br><span style="font-size: 13.5px; color: var(--soluk);">Online randevuya açık</span></span>
+          <span class="durum" style="background: #EEF1EE; color: var(--soluk);">Müsait</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kutu dar">
+    <div class="bolum-basi">
+      <p class="etiket">Sorun</p>
+      <h2>Randevu defteri kâğıtta, mesajlar telefonda, ödemeler akılda.</h2>
+      <p class="govde-buyuk">Küçük işletmede en çok zaman, randevu takibinde ve gelmeyen danışanlarda gidiyor. Nabız bu üç işi tek akışa bağlar.</p>
+    </div>
+
+    <div class="kartlar">
+      <article class="kart">
+        <span class="isaret" aria-hidden="true">⌘</span>
+        <h3>Gelmeyen danışan</h3>
+        <p>Randevudan bir gün önce otomatik hatırlatma gider. Danışan tek dokunuşla onaylar ya da erteler.</p>
+      </article>
+      <article class="kart">
+        <span class="isaret" aria-hidden="true">☰</span>
+        <h3>Dağınık kayıt</h3>
+        <p>Danışanın geçmiş seansları, notları ve ölçümleri aynı kartta durur. Aramakla vakit kaybetmezsiniz.</p>
+      </article>
+      <article class="kart">
+        <span class="isaret" aria-hidden="true">₺</span>
+        <h3>Takip edilmeyen ödeme</h3>
+        <p>Paket seans, kalan hak ve tahsilat tek listede. Ay sonunda ne girdi ne çıktı bellidir.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="kutu dar">
+    <div class="bolum-basi">
+      <p class="etiket">Üç adım</p>
+      <h2>Kurulum bir öğle arası sürer.</h2>
+    </div>
+    <div class="adimlar">
+      <div class="adim">
+        <span class="sira">ADIM 01</span>
+        <h3>Çalışma saatlerinizi girin</h3>
+        <p>Hizmetlerinizi, sürelerini ve ücretlerini tanımlarsınız. Şablonlar hazır gelir.</p>
+      </div>
+      <div class="adim">
+        <span class="sira">ADIM 02</span>
+        <h3>Randevu bağlantınızı paylaşın</h3>
+        <p>Instagram profilinize ya da WhatsApp mesajınıza koyabileceğiniz bir bağlantı alırsınız.</p>
+      </div>
+      <div class="adim">
+        <span class="sira">ADIM 03</span>
+        <h3>Gerisini Nabız hatırlatır</h3>
+        <p>Onay, hatırlatma ve erteleme mesajları otomatik gider; siz sadece takviminize bakarsınız.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="kutu dar">
+    <div class="bolum-basi">
+      <p class="etiket">Öne çıkanlar</p>
+      <h2>Küçük işletmenin ihtiyacı kadar, fazlası değil.</h2>
+    </div>
+    <div class="kartlar">
+      <article class="kart">
+        <h3>Online randevu sayfası</h3>
+        <p>Danışan müsait saatleri görür, kendi seçer. Çakışma olmaz.</p>
+      </article>
+      <article class="kart">
+        <h3>Danışan kartı</h3>
+        <p>Geçmiş seanslar, notlar, dosyalar ve ölçümler tek ekranda.</p>
+      </article>
+      <article class="kart">
+        <h3>Paket ve tahsilat</h3>
+        <p>Kalan seans hakkı ve ödemeler otomatik düşülür.</p>
+      </article>
+      <article class="kart">
+        <h3>Takım takvimi</h3>
+        <p>Birden fazla çalışan varsa herkesin takvimi yan yana görünür.</p>
+      </article>
+    </div>
+    <p style="margin-top: 22px;"><a href="ozellikler.html">Bütün özellikleri görün →</a></p>
+  </section>
+
+  <section class="kutu">
+    <div class="cagri">
+      <div style="display: grid; gap: 10px;">
+        <h2>14 gün boyunca ücretsiz deneyin.</h2>
+        <p>Demo talebini bırakın, kurulum için sizi arayalım. Kredi kartı istemiyoruz.</p>
+      </div>
+      <div class="dugmeler" style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a class="dugme dolu" href="iletisim.html">Demo isteyin</a>
+        <a class="dugme bos" href="fiyatlar.html">Fiyatlara bakın</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="kutu footer-ic">
+    <div class="footer-sut">
+      <a class="marka" href="index.html"><span class="isaret" aria-hidden="true">N</span> Nabız</a>
+      <p style="color: var(--soluk); font-size: 15px;">Küçük işletmeler için randevu ve danışan takibi.</p>
+    </div>
+    <div class="footer-sut">
+      <b>Ürün</b>
+      <a href="ozellikler.html">Özellikler</a>
+      <a href="fiyatlar.html">Fiyatlar</a>
+      <a href="sss.html">Sık sorulanlar</a>
+    </div>
+    <div class="footer-sut">
+      <b>Destek</b>
+      <a href="iletisim.html">Demo isteyin</a>
+      <a href="sss.html#kurulum">Kurulum</a>
+      <a href="iletisim.html">İletişim</a>
+    </div>
+    <div class="footer-sut">
+      <b>Kimler kullanır</b>
+      <a href="ozellikler.html#kimler">Diyetisyen</a>
+      <a href="ozellikler.html#kimler">Fizyoterapist</a>
+      <a href="ozellikler.html#kimler">Kuaför ve güzellik</a>
+    </div>
+  </div>
+  <div class="kutu footer-alt">
+    <span>Nabız örnek bir ürün tasarımıdır; gerçek bir hizmet değildir.</span>
+    <span class="sag">Tasarım ve kod: Fatih Şener</span>
+  </div>
+</footer>
+
+<script src="betik.js"></script>
+</body>
+</html>
