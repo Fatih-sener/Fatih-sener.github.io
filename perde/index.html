@@ -1,4 +1,10 @@
-<title>PERDE</title>
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PERDE — anime fragmanları</title>
+<meta name="description" content="Anime fragmanlarını tek yerden izle: PERDE, örnek arayüz tasarımı.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -20,6 +26,8 @@
 
   * { box-sizing: border-box; }
 
+  html, body { max-width: 100%; overflow-x: hidden; }
+
   body {
     margin: 0;
     background: var(--gece);
@@ -27,40 +35,41 @@
     font-family: var(--govde);
     font-size: 16px;
     line-height: 1.55;
-    padding-inline: 0;
-    overflow-x: hidden;
   }
 
+  img { max-width: 100%; display: block; }
   a { color: inherit; text-decoration: none; }
-  :focus-visible { outline: 2px solid var(--altin); outline-offset: 3px; border-radius: 4px; }
+  :focus-visible { outline: 2px solid var(--altin); outline-offset: 3px; border-radius: 6px; }
+  [hidden] { display: none !important; }
 
-  .kenar { padding-inline: 20px; }
-  @media (min-width: 900px) { .kenar { padding-inline: 48px; } }
+  .kenar { padding-inline: 16px; }
+  @media (min-width: 720px) { .kenar { padding-inline: 32px; } }
+  @media (min-width: 1100px) { .kenar { padding-inline: 56px; } }
 
-  /* ── Üst menü ───────────────────────────────── */
+  /* ── Üst menü ─────────────────────────────── */
   .ust {
     position: sticky;
-    top: env(safe-area-inset-top, 0px);
+    top: 0;
     z-index: 30;
     display: flex;
     align-items: center;
-    gap: 22px;
-    padding-block: 14px;
-    background: linear-gradient(to bottom, rgba(11, 11, 14, 0.96), rgba(11, 11, 14, 0.72));
+    gap: 14px;
+    padding-block: 12px;
+    padding-top: calc(12px + env(safe-area-inset-top, 0px));
+    background: rgba(11, 11, 14, 0.92);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(42, 42, 52, 0.7);
+    border-bottom: 1px solid rgba(42, 42, 52, 0.8);
   }
   .marka {
     font-family: var(--serif);
-    font-size: 27px;
-    letter-spacing: 0.22em;
+    font-size: 24px;
+    letter-spacing: 0.2em;
     color: var(--altin);
     line-height: 1;
   }
-  .ust nav { display: none; gap: 20px; font-size: 14px; color: var(--soluk); }
-  .ust nav a:hover { color: var(--metin); }
-  .ust nav a[aria-current="page"] { color: var(--metin); }
-  .ust-sag { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+  .ust nav { display: none; gap: 18px; font-size: 14px; color: var(--soluk); }
+  .ust nav a:hover, .ust nav a:focus-visible { color: var(--metin); }
+  .ust-sag { margin-left: auto; display: flex; align-items: center; gap: 10px; }
   .ara {
     display: flex;
     align-items: center;
@@ -69,6 +78,7 @@
     border: 1px solid var(--cizgi);
     border-radius: 999px;
     padding: 8px 14px;
+    max-width: 100%;
   }
   .ara input {
     background: transparent;
@@ -76,12 +86,14 @@
     color: var(--metin);
     font-family: var(--govde);
     font-size: 14px;
-    width: 104px;
+    width: 92px;
+    min-width: 0;
     outline: none;
   }
   .ara input::placeholder { color: var(--soluk); }
   .profil {
     width: 34px; height: 34px;
+    flex: none;
     border-radius: 10px;
     background: linear-gradient(140deg, var(--gul), #7A4A5F);
     display: grid;
@@ -90,26 +102,25 @@
     font-size: 17px;
     color: #14060C;
   }
-  @media (min-width: 860px) { .ust nav { display: flex; } .ara input { width: 160px; } }
+  @media (min-width: 720px) { .ust nav { display: flex; } .ara input { width: 150px; } }
 
-  /* ── Tanıtım ────────────────────────────────── */
-  .tanitim {
-    position: relative;
-    display: grid;
-    gap: 28px;
-    padding-block: 44px 40px;
-    border-bottom: 1px solid var(--cizgi);
+  /* ── Tanıtım ──────────────────────────────── */
+  .tanitim { position: relative; overflow: hidden; border-bottom: 1px solid var(--cizgi); }
+  .tanitim .fon {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 30%;
+    opacity: 0.5;
   }
-  .tanitim::before {
-    content: "";
+  .tanitim .perde {
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(70% 90% at 12% 10%, rgba(242, 193, 78, 0.16), transparent 60%),
-      radial-gradient(60% 80% at 88% 30%, rgba(196, 112, 143, 0.15), transparent 62%);
-    pointer-events: none;
+      linear-gradient(to right, rgba(11,11,14,0.96) 0%, rgba(11,11,14,0.75) 45%, rgba(11,11,14,0.25) 100%),
+      linear-gradient(to top, var(--gece) 2%, rgba(11,11,14,0) 60%);
   }
-  .tanitim > * { position: relative; }
+  .tanitim-ic { position: relative; padding-block: 44px 34px; max-width: 640px; }
   .rozet {
     font-family: var(--mono);
     font-size: 11px;
@@ -119,96 +130,90 @@
     display: inline-flex;
     align-items: center;
     gap: 9px;
+    margin: 0;
   }
-  .rozet::before { content: ""; width: 22px; height: 1px; background: var(--altin); }
+  .rozet::before { content: ""; width: 20px; height: 1px; background: var(--altin); }
   .tanitim h1 {
     font-family: var(--serif);
     font-weight: 400;
-    font-size: clamp(44px, 11vw, 104px);
-    line-height: 0.92;
+    font-size: clamp(38px, 9vw, 82px);
+    line-height: 0.94;
     letter-spacing: -0.015em;
-    margin: 14px 0 0;
+    margin: 12px 0 0;
     text-wrap: balance;
   }
   .tanitim h1 em { font-style: italic; color: var(--altin); }
   .kunye {
     font-family: var(--mono);
-    font-size: 13px;
+    font-size: 12.5px;
     color: var(--soluk);
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 14px;
-    margin-top: 18px;
+    gap: 6px 12px;
     align-items: center;
+    margin-top: 14px;
   }
   .kunye .puan { color: var(--altin); }
-  .kunye .yas {
-    border: 1px solid var(--cizgi);
-    border-radius: 4px;
-    padding: 1px 6px;
-    font-size: 11px;
-  }
-  .tanitim p.ozet { max-width: 52ch; color: #CFCBD6; margin: 16px 0 0; }
-  .eylemler { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+  .kunye .etiket { border: 1px solid var(--cizgi); border-radius: 4px; padding: 1px 6px; font-size: 11px; }
+  .tanitim p.ozet { max-width: 50ch; color: #CFCBD6; margin: 14px 0 0; }
+  .eylemler { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
   .btn {
     font-family: var(--govde);
     font-size: 15px;
     font-weight: 600;
     border-radius: 999px;
-    padding: 13px 24px;
+    padding: 12px 22px;
     border: 1px solid transparent;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 9px;
+    min-height: 44px;
     transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
   }
   .btn.oynat { background: var(--altin); color: #17140A; }
   .btn.oynat:hover { background: #F7D076; transform: translateY(-2px); }
-  .btn.ikincil { background: transparent; border-color: var(--cizgi); color: var(--metin); }
+  .btn.ikincil { background: rgba(21, 21, 27, 0.7); border-color: var(--cizgi); color: var(--metin); }
   .btn.ikincil:hover { border-color: var(--gul); transform: translateY(-2px); }
-  .ilerleme { margin-top: 22px; max-width: 320px; }
-  .ilerleme .cubuk { height: 3px; background: var(--yuzey2); border-radius: 999px; overflow: hidden; }
-  .ilerleme .dolu { display: block; height: 100%; width: 38%; background: var(--altin); }
-  .ilerleme span.metin { font-family: var(--mono); font-size: 12px; color: var(--soluk); display: block; margin-top: 8px; }
 
-  /* ── Film sıraları ──────────────────────────── */
-  .sira { padding-block: 34px 6px; }
-  .sira-basi { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+  /* ── Sıralar ──────────────────────────────── */
+  .sira { padding-block: 30px 4px; }
+  .sira-basi { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; }
   .sira-basi h2 {
     font-family: var(--serif);
     font-weight: 400;
-    font-size: clamp(22px, 3.4vw, 30px);
+    font-size: clamp(21px, 3.2vw, 28px);
     margin: 0;
-    letter-spacing: -0.01em;
   }
   .sira-basi .adet { font-family: var(--mono); font-size: 12px; color: var(--soluk); }
-  .sira-basi .kaydir { margin-left: auto; display: flex; gap: 8px; }
+  .kaydir { margin-left: auto; display: none; gap: 8px; }
   .kaydir button {
-    width: 34px; height: 34px;
+    width: 36px; height: 36px;
     border-radius: 50%;
     border: 1px solid var(--cizgi);
     background: var(--yuzey);
     color: var(--metin);
     cursor: pointer;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1;
   }
   .kaydir button:hover { border-color: var(--altin); color: var(--altin); }
+  @media (min-width: 720px) { .kaydir { display: flex; } }
 
   .ray {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     overflow-x: auto;
     scroll-snap-type: x proximity;
-    padding-bottom: 12px;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: var(--cizgi) transparent;
   }
   .ray::-webkit-scrollbar { height: 6px; }
   .ray::-webkit-scrollbar-thumb { background: var(--cizgi); border-radius: 999px; }
 
-  .film {
+  .kart {
     flex: 0 0 auto;
     width: 208px;
     scroll-snap-align: start;
@@ -216,359 +221,365 @@
     border: 0;
     padding: 0;
     text-align: left;
-    cursor: pointer;
-    font-family: inherit;
     color: inherit;
+    font-family: inherit;
+    cursor: pointer;
   }
-  .afis {
+  @media (min-width: 720px) { .kart { width: 268px; } .ray { gap: 16px; } }
+
+  .kapak {
     position: relative;
-    aspect-ratio: 2 / 3;
-    max-width: 100%;
+    aspect-ratio: 16 / 9;
     border-radius: 12px;
     overflow: hidden;
-    background: linear-gradient(155deg, var(--a, #2A2A34), var(--b, #14141A) 78%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    transition: transform 0.22s ease, border-color 0.22s ease;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: var(--yuzey2);
+    transition: transform 0.2s ease, border-color 0.2s ease;
   }
-  .film:hover .afis, .film:focus-visible .afis { transform: translateY(-6px); border-color: var(--altin); }
-  .afis::before {
-    content: "";
+  .kapak img { width: 100%; height: 100%; object-fit: cover; }
+  .kart:hover .kapak, .kart:focus-visible .kapak { transform: translateY(-5px); border-color: var(--altin); }
+  .kapak .oynat-isareti {
     position: absolute;
     inset: 0;
-    background:
-      repeating-linear-gradient(115deg, rgba(255,255,255,0.045) 0 2px, transparent 2px 16px),
-      radial-gradient(120% 60% at 50% 0%, rgba(255,255,255,0.10), transparent 60%);
-  }
-  .afis .yazi {
-    position: relative;
-    font-family: var(--serif);
-    font-size: 27px;
-    line-height: 1.02;
-    letter-spacing: -0.01em;
-    text-wrap: balance;
-  }
-  .afis .alt {
-    position: relative;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.72);
-    margin-top: 10px;
-  }
-  .film h3 { font-size: 15px; font-weight: 600; margin: 12px 0 2px; }
-  .film .meta { font-family: var(--mono); font-size: 12px; color: var(--soluk); }
-  .film .izlenen { height: 3px; background: var(--yuzey2); border-radius: 999px; margin-top: 10px; overflow: hidden; }
-  .film .izlenen b { display: block; height: 100%; background: var(--gul); }
-
-  /* ── Detay paneli ───────────────────────────── */
-  .detay {
-    position: fixed;
-    inset: auto 0 0 0;
-    z-index: 40;
-    background: var(--yuzey);
-    border-top: 1px solid var(--cizgi);
-    padding: 22px 20px calc(22px + env(safe-area-inset-bottom, 0px));
     display: grid;
-    gap: 16px;
-    box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.55);
+    place-items: center;
+    background: linear-gradient(to top, rgba(11,11,14,0.75), rgba(11,11,14,0.05) 55%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
   }
-  .detay h2 { font-family: var(--serif); font-weight: 400; font-size: 30px; margin: 0; }
-  .detay .kunye { margin-top: 0; }
-  .detay p { margin: 0; color: #CFCBD6; max-width: 62ch; }
-  .detay .kapat {
+  .kart:hover .oynat-isareti, .kart:focus-visible .oynat-isareti { opacity: 1; }
+  .oynat-isareti span {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: var(--altin);
+    color: #17140A;
+    display: grid;
+    place-items: center;
+    font-size: 17px;
+    padding-left: 3px;
+  }
+  .kapak .sure {
     position: absolute;
-    top: 14px; right: 16px;
-    width: 34px; height: 34px;
+    right: 8px; bottom: 8px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    background: rgba(11,11,14,0.78);
+    border-radius: 5px;
+    padding: 3px 7px;
+    color: var(--metin);
+  }
+  .kart h3 { font-size: 15px; font-weight: 600; margin: 10px 0 2px; }
+  .kart .meta { font-family: var(--mono); font-size: 11.5px; color: var(--soluk); }
+
+  /* ── Oynatıcı ─────────────────────────────── */
+  .oynatici {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(6, 6, 8, 0.88);
+    backdrop-filter: blur(6px);
+    display: grid;
+    place-items: end center;
+    padding: 0;
+  }
+  .oynatici-kutu {
+    width: 100%;
+    max-width: 900px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 18px 18px 0 0;
+    overflow: hidden;
+    max-height: 92vh;
+    overflow-y: auto;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (min-width: 720px) {
+    .oynatici { place-items: center; padding: 24px; }
+    .oynatici-kutu { border-radius: 18px; }
+  }
+  .cerceve { position: relative; aspect-ratio: 16 / 9; background: #000; }
+  .cerceve iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .oynatici-bilgi { padding: 18px 20px 24px; display: grid; gap: 12px; }
+  .oynatici-bilgi h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 5vw, 32px); margin: 0; }
+  .oynatici-bilgi p { margin: 0; color: #CFCBD6; max-width: 62ch; }
+  .kapat {
+    position: absolute;
+    top: 12px; right: 12px;
+    z-index: 2;
+    width: 40px; height: 40px;
     border-radius: 50%;
     border: 1px solid var(--cizgi);
-    background: var(--yuzey2);
+    background: rgba(11,11,14,0.8);
     color: var(--metin);
     cursor: pointer;
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1;
   }
-  .detay .kapat:hover { border-color: var(--altin); color: var(--altin); }
-  @media (min-width: 860px) {
-    .detay { inset: auto 48px 24px auto; width: 520px; border: 1px solid var(--cizgi); border-radius: 18px; }
-  }
+  .kapat:hover { border-color: var(--altin); color: var(--altin); }
+
+  .bos-uyari { font-family: var(--mono); font-size: 13px; color: var(--soluk); padding-block: 12px; }
 
   footer {
-    margin-top: 48px;
-    padding-block: 26px 40px;
+    margin-top: 40px;
+    padding-block: 22px;
+    padding-bottom: calc(34px + env(safe-area-inset-bottom, 0px));
     border-top: 1px solid var(--cizgi);
     display: flex;
     flex-wrap: wrap;
-    gap: 10px 22px;
+    gap: 8px 20px;
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 11.5px;
     color: var(--soluk);
     letter-spacing: 0.04em;
   }
-  footer span:last-child { margin-left: auto; }
+  footer .sag { margin-left: auto; }
 
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } .ray { scroll-behavior: auto; } }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+    .ray { scroll-behavior: auto; }
+  }
 </style>
+</head>
+<body>
 
 <header class="ust kenar">
   <span class="marka">PERDE</span>
   <nav>
-    <a href="#kesfet" aria-current="page">Keşfet</a>
-    <a href="#turk">Türk sineması</a>
-    <a href="#listem">Listem</a>
+    <a href="#one-cikan">Keşfet</a>
+    <a href="#yeni">Yeni sezonlar</a>
+    <a href="#aksiyon">Aksiyon</a>
   </nav>
   <div class="ust-sag">
     <label class="ara">
       <span aria-hidden="true" style="color: var(--soluk); font-size: 14px;">⌕</span>
-      <input id="arama" type="search" placeholder="Film ara" aria-label="Film ara">
+      <input id="arama" type="search" placeholder="Anime ara" aria-label="Anime ara">
     </label>
     <span class="profil" aria-hidden="true">F</span>
   </div>
 </header>
 
 <main>
-  <section class="tanitim kenar" id="kesfet">
-    <div>
-      <span class="rozet">Haftanın filmi</span>
-      <h1>Bir Zamanlar <em>Anadolu'da</em></h1>
+  <section class="tanitim" id="one-cikan">
+    <div class="fon" id="tanitimFon" aria-hidden="true"></div>
+    <div class="perde" aria-hidden="true"></div>
+    <div class="tanitim-ic kenar">
+      <p class="rozet">Haftanın anime'si</p>
+      <h1>Frieren: <em>Beyond Journey's End</em></h1>
       <div class="kunye">
-        <span class="puan">★ 8.1</span>
-        <span>2011</span>
-        <span>2 sa 37 dk</span>
-        <span>Dram</span>
-        <span class="yas">13+</span>
-        <span>Nuri Bilge Ceylan</span>
+        <span class="puan">★ 8.9</span>
+        <span>2023</span>
+        <span>28 bölüm</span>
+        <span>Fantastik · Dram</span>
+        <span class="etiket">Madhouse</span>
       </div>
-      <p class="ozet">Bir cinayetin izini sürmek için bozkıra çıkan savcı, doktor ve jandarma ekibi, gece boyunca hem cesedi hem kendi geçmişlerini arar.</p>
+      <p class="ozet">Demon Kralı yenildikten sonra geriye kalan elf büyücü Frieren, insan ömrünün ne kadar kısa olduğunu anlamak için yeniden yola çıkar.</p>
       <div class="eylemler">
-        <button class="btn oynat" type="button" data-film="anadolu"><span aria-hidden="true">▶</span> Oynat</button>
-        <button class="btn ikincil" type="button" data-film="anadolu">Detaylar</button>
-        <button class="btn ikincil" type="button" id="listeyeEkle">+ Listeme ekle</button>
-      </div>
-      <div class="ilerleme">
-        <span class="cubuk" aria-hidden="true"><b class="dolu"></b></span>
-        <span class="metin">Kaldığın yer: 58. dakika</span>
+        <button class="btn oynat" type="button" data-anime="frieren"><span aria-hidden="true">▶</span> Fragmanı izle</button>
+        <button class="btn ikincil" type="button" data-anime="frieren">Detaylar</button>
       </div>
     </div>
   </section>
 
-  <section class="sira kenar" id="devam">
+  <section class="sira kenar" id="yeni">
     <div class="sira-basi">
-      <h2>Devam et</h2>
-      <span class="adet">3 film</span>
+      <h2>Yeni sezonlar</h2>
+      <span class="adet"></span>
       <span class="kaydir"><button type="button" data-yon="-1" aria-label="Sola kaydır">‹</button><button type="button" data-yon="1" aria-label="Sağa kaydır">›</button></span>
     </div>
-    <div class="ray">
-      <button class="film" type="button" data-film="uzak">
-        <span class="afis" style="--a:#3A3F4B; --b:#15171D;"><span class="yazi">Uzak</span><span class="alt">2002 · Dram</span></span>
-        <h3>Uzak</h3>
-        <span class="meta">1 sa 50 dk · %64</span>
-        <span class="izlenen"><b style="width: 64%;"></b></span>
-      </button>
-      <button class="film" type="button" data-film="masumiyet">
-        <span class="afis" style="--a:#4A3550; --b:#181019;"><span class="yazi">Masumiyet</span><span class="alt">1997 · Dram</span></span>
-        <h3>Masumiyet</h3>
-        <span class="meta">1 sa 50 dk · %22</span>
-        <span class="izlenen"><b style="width: 22%;"></b></span>
-      </button>
-      <button class="film" type="button" data-film="gemide">
-        <span class="afis" style="--a:#2E4A46; --b:#101A19;"><span class="yazi">Gemide</span><span class="alt">1998 · Dram</span></span>
-        <h3>Gemide</h3>
-        <span class="meta">1 sa 47 dk · %81</span>
-        <span class="izlenen"><b style="width: 81%;"></b></span>
-      </button>
-    </div>
+    <div class="ray" data-liste="yeni"></div>
+    <p class="bos-uyari" hidden>Aramaya uyan anime yok.</p>
   </section>
 
-  <section class="sira kenar" id="turk">
+  <section class="sira kenar" id="aksiyon">
     <div class="sira-basi">
-      <h2>Türk sineması seçkisi</h2>
-      <span class="adet">6 film</span>
+      <h2>Aksiyon ve doğaüstü</h2>
+      <span class="adet"></span>
       <span class="kaydir"><button type="button" data-yon="-1" aria-label="Sola kaydır">‹</button><button type="button" data-yon="1" aria-label="Sağa kaydır">›</button></span>
     </div>
-    <div class="ray">
-      <button class="film" type="button" data-film="ahlat">
-        <span class="afis" style="--a:#5A4A2E; --b:#181410;"><span class="yazi">Ahlat Ağacı</span><span class="alt">2018 · Dram</span></span>
-        <h3>Ahlat Ağacı</h3>
-        <span class="meta">3 sa 8 dk · Nuri Bilge Ceylan</span>
-      </button>
-      <button class="film" type="button" data-film="kis">
-        <span class="afis" style="--a:#33424F; --b:#0F1519;"><span class="yazi">Kış Uykusu</span><span class="alt">2014 · Dram</span></span>
-        <h3>Kış Uykusu</h3>
-        <span class="meta">3 sa 16 dk · Nuri Bilge Ceylan</span>
-      </button>
-      <button class="film" type="button" data-film="eskiya">
-        <span class="afis" style="--a:#5A2E33; --b:#190F11;"><span class="yazi">Eşkıya</span><span class="alt">1996 · Suç</span></span>
-        <h3>Eşkıya</h3>
-        <span class="meta">2 sa 8 dk · Yavuz Turgul</span>
-      </button>
-      <button class="film" type="button" data-film="babam">
-        <span class="afis" style="--a:#3E5340; --b:#111713;"><span class="yazi">Babam ve Oğlum</span><span class="alt">2005 · Dram</span></span>
-        <h3>Babam ve Oğlum</h3>
-        <span class="meta">1 sa 48 dk · Çağan Irmak</span>
-      </button>
-      <button class="film" type="button" data-film="tabut">
-        <span class="afis" style="--a:#2F3A52; --b:#101218;"><span class="yazi">Tabutta Rövaşata</span><span class="alt">1996 · Dram</span></span>
-        <h3>Tabutta Rövaşata</h3>
-        <span class="meta">1 sa 15 dk · Derviş Zaim</span>
-      </button>
-      <button class="film" type="button" data-film="vizontele">
-        <span class="afis" style="--a:#57452E; --b:#181310;"><span class="yazi">Vizontele</span><span class="alt">2001 · Komedi</span></span>
-        <h3>Vizontele</h3>
-        <span class="meta">1 sa 50 dk · Yılmaz Erdoğan</span>
-      </button>
-    </div>
+    <div class="ray" data-liste="aksiyon"></div>
+    <p class="bos-uyari" hidden>Aramaya uyan anime yok.</p>
   </section>
 
-  <section class="sira kenar" id="listem">
+  <section class="sira kenar" id="hepsi">
     <div class="sira-basi">
-      <h2>Listem</h2>
-      <span class="adet">4 film</span>
+      <h2>Dram ve günlük yaşam</h2>
+      <span class="adet"></span>
       <span class="kaydir"><button type="button" data-yon="-1" aria-label="Sola kaydır">‹</button><button type="button" data-yon="1" aria-label="Sağa kaydır">›</button></span>
     </div>
-    <div class="ray">
-      <button class="film" type="button" data-film="anadolu">
-        <span class="afis" style="--a:#4C4433; --b:#161410;"><span class="yazi">Bir Zamanlar Anadolu'da</span><span class="alt">2011 · Dram</span></span>
-        <h3>Bir Zamanlar Anadolu'da</h3>
-        <span class="meta">2 sa 37 dk · Nuri Bilge Ceylan</span>
-      </button>
-      <button class="film" type="button" data-film="sonsuzluk">
-        <span class="afis" style="--a:#39304C; --b:#121016;"><span class="yazi">Sonsuzluk ve Bir Gün</span><span class="alt">1998 · Dram</span></span>
-        <h3>Sonsuzluk ve Bir Gün</h3>
-        <span class="meta">2 sa 17 dk · Theo Angelopoulos</span>
-      </button>
-      <button class="film" type="button" data-film="yol">
-        <span class="afis" style="--a:#4A4238; --b:#151211;"><span class="yazi">Yol</span><span class="alt">1982 · Dram</span></span>
-        <h3>Yol</h3>
-        <span class="meta">1 sa 54 dk · Yılmaz Güney, Şerif Gören</span>
-      </button>
-      <button class="film" type="button" data-film="sürü">
-        <span class="afis" style="--a:#3F4A3A; --b:#121511;"><span class="yazi">Sürü</span><span class="alt">1978 · Dram</span></span>
-        <h3>Sürü</h3>
-        <span class="meta">1 sa 58 dk · Zeki Ökten</span>
-      </button>
-    </div>
+    <div class="ray" data-liste="dram"></div>
+    <p class="bos-uyari" hidden>Aramaya uyan anime yok.</p>
   </section>
 
   <footer class="kenar">
     <span>PERDE · örnek arayüz tasarımı</span>
-    <span>Tasarım: Fatih Şener</span>
+    <span>Fragmanlar YouTube üzerinden, resmi kanallardan oynatılır.</span>
+    <span class="sag">Tasarım: Fatih Şener</span>
   </footer>
 </main>
 
-<aside class="detay" id="detay" hidden aria-live="polite">
-  <button class="kapat" type="button" id="detayKapat" aria-label="Detayı kapat">✕</button>
-  <h2 id="detayBaslik">Film</h2>
-  <div class="kunye" id="detayKunye"></div>
-  <p id="detayOzet"></p>
-  <div class="eylemler" style="margin-top: 4px;">
-    <button class="btn oynat" type="button"><span aria-hidden="true">▶</span> Oynat</button>
-    <button class="btn ikincil" type="button">Fragman</button>
+<div class="oynatici" id="oynatici" hidden>
+  <div class="oynatici-kutu" role="dialog" aria-modal="true" aria-labelledby="oynaticiBaslik">
+    <div class="cerceve">
+      <button class="kapat" type="button" id="oynaticiKapat" aria-label="Kapat">✕</button>
+      <iframe id="cerceve" title="Fragman" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <div class="oynatici-bilgi">
+      <h2 id="oynaticiBaslik">Fragman</h2>
+      <div class="kunye" id="oynaticiKunye"></div>
+      <p id="oynaticiOzet"></p>
+    </div>
   </div>
-</aside>
+</div>
 
 <script>
-  (function () {
-    var filmler = {
-      anadolu: { ad: "Bir Zamanlar Anadolu'da", yil: "2011", sure: "2 sa 37 dk", tur: "Dram", yon: "Nuri Bilge Ceylan", puan: "8.1",
-        ozet: "Bir cinayetin izini sürmek için bozkıra çıkan savcı, doktor ve jandarma ekibi, gece boyunca hem cesedi hem kendi geçmişlerini arar." },
-      uzak: { ad: "Uzak", yil: "2002", sure: "1 sa 50 dk", tur: "Dram", yon: "Nuri Bilge Ceylan", puan: "7.7",
-        ozet: "İstanbul'da yalnız yaşayan bir fotoğrafçının evine, iş aramak için taşradan gelen akrabası yerleşir. İki adamın sessiz çatışması." },
-      masumiyet: { ad: "Masumiyet", yil: "1997", sure: "1 sa 50 dk", tur: "Dram", yon: "Zeki Demirkubuz", puan: "8.2",
-        ozet: "Hapisten çıkan Yusuf'un, bir otelde tanıştığı Uğur ve Bekir'in hikâyesine karışmasıyla başlayan karanlık yolculuk." },
-      gemide: { ad: "Gemide", yil: "1998", sure: "1 sa 47 dk", tur: "Dram", yon: "Serdar Akar", puan: "8.2",
-        ozet: "İstanbul limanında demirli bir gemide yaşayan dört tayfanın, bir gece yaşadıkları olayla altüst olan düzeni." },
-      ahlat: { ad: "Ahlat Ağacı", yil: "2018", sure: "3 sa 8 dk", tur: "Dram", yon: "Nuri Bilge Ceylan", puan: "8.1",
-        ozet: "Üniversiteyi bitirip memleketine dönen Sinan, kitabını bastırmaya çalışırken babasıyla ve kasabayla hesaplaşır." },
-      kis: { ad: "Kış Uykusu", yil: "2014", sure: "3 sa 16 dk", tur: "Dram", yon: "Nuri Bilge Ceylan", puan: "8.1",
-        ozet: "Kapadokya'da otel işleten eski bir oyuncunun, kışın uzayan günlerinde karısı ve kız kardeşiyle yüzleşmesi." },
-      eskiya: { ad: "Eşkıya", yil: "1996", sure: "2 sa 8 dk", tur: "Suç", yon: "Yavuz Turgul", puan: "8.3",
-        ozet: "Otuz beş yıl sonra hapisten çıkan Baran, kaybettiği sevgilisini ve ihanetin izini aramak için İstanbul'a gelir." },
-      babam: { ad: "Babam ve Oğlum", yil: "2005", sure: "1 sa 48 dk", tur: "Dram", yon: "Çağan Irmak", puan: "8.2",
-        ozet: "Yıllar sonra oğluyla birlikte baba evine dönen Sadık'ın, geçmişteki kırgınlıkları onarma çabası." },
-      tabut: { ad: "Tabutta Rövaşata", yil: "1996", sure: "1 sa 15 dk", tur: "Dram", yon: "Derviş Zaim", puan: "8.0",
-        ozet: "Rumelihisarı'nda yaşayan evsiz Mahsun'un, geceleri araba çalıp sabah geri bırakma alışkanlığı üzerinden anlatılan hikâye." },
-      vizontele: { ad: "Vizontele", yil: "2001", sure: "1 sa 50 dk", tur: "Komedi", yon: "Yılmaz Erdoğan", puan: "8.0",
-        ozet: "1970'lerde Hakkâri'de bir kasabaya televizyonun gelişi ve kasabalının bu yeni aletle imtihanı." },
-      sonsuzluk: { ad: "Sonsuzluk ve Bir Gün", yil: "1998", sure: "2 sa 17 dk", tur: "Dram", yon: "Theo Angelopoulos", puan: "7.9",
-        ozet: "Ölümcül hasta bir yazarın son gününde, sokakta tanıştığı çocukla birlikte geçmişine yaptığı yolculuk." },
-      yol: { ad: "Yol", yil: "1982", sure: "1 sa 54 dk", tur: "Dram", yon: "Yılmaz Güney, Şerif Gören", puan: "8.0",
-        ozet: "Bir haftalık izne çıkan beş mahkûmun, memleketlerine döndüklerinde karşılaştıkları gerçekler." },
-      "sürü": { ad: "Sürü", yil: "1978", sure: "1 sa 58 dk", tur: "Dram", yon: "Zeki Ökten", puan: "8.1",
-        ozet: "Koyun sürüsünü satmak için Ankara'ya giden bir ailenin yolculuğu ve dağılışı." }
-    };
+(function () {
+  var animeler = [
+    { id: "frieren", ad: "Frieren: Beyond Journey's End", yil: 2023, bolum: "28 bölüm", tur: "Fantastik · Dram", studyo: "Madhouse", puan: "8.9", liste: "dram", video: "Iwr1aLEDpe4",
+      ozet: "Demon Kralı yenildikten sonra geriye kalan elf büyücü Frieren, insan ömrünün ne kadar kısa olduğunu anlamak için yeniden yola çıkar." },
+    { id: "dandadan2", ad: "DAN DA DAN 2. Sezon", yil: 2025, bolum: "12 bölüm", tur: "Aksiyon · Komedi", studyo: "Science SARU", puan: "8.4", liste: "yeni", video: "0G7HX16YTLU",
+      ozet: "Uzaylılara inanan Okarun ile hayaletlere inanan Momo'nun tuhaf ikilisi, ikinci sezonda daha büyük bir tehlikeyle karşılaşır." },
+    { id: "jjkculling", ad: "Jujutsu Kaisen: The Culling Game", yil: 2026, bolum: "Yeni sezon", tur: "Aksiyon · Doğaüstü", studyo: "MAPPA", puan: "—", liste: "yeni", video: "MPfZhgLiK6w",
+      ozet: "Büyücülerin ölümcül bir oyuna sürüklendiği yeni sezonun resmi fragmanı." },
+    { id: "spy2", ad: "SPY x FAMILY 2. Sezon + Film", yil: 2023, bolum: "12 bölüm", tur: "Komedi · Aksiyon", studyo: "Wit Studio · CloverWorks", puan: "8.4", liste: "yeni", video: "QbplUALoyyU",
+      ozet: "Casus Loid, suikastçı Yor ve telepat Anya'dan oluşan sahte ailenin ikinci sezonu ve sinema filmi." },
+    { id: "edgerunners2", ad: "Cyberpunk: Edgerunners 2", yil: 2026, bolum: "Yeni sezon", tur: "Bilim kurgu · Aksiyon", studyo: "Trigger", puan: "—", liste: "yeni", video: "iiuRyNg3giw",
+      ozet: "Night City'ye dönen serinin ikinci sezonundan resmi tanıtım." },
+    { id: "demonslayer", ad: "Demon Slayer: Kimetsu no Yaiba", yil: 2019, bolum: "26 bölüm", tur: "Aksiyon · Doğaüstü", studyo: "ufotable", puan: "8.6", liste: "aksiyon", video: "t6MXHczeEqc",
+      ozet: "Ailesi iblisler tarafından katledilen Tanjiro, iblise dönüşen kız kardeşini kurtarmak için iblis avcısı olur." },
+    { id: "jjk", ad: "Jujutsu Kaisen", yil: 2020, bolum: "24 bölüm", tur: "Aksiyon · Doğaüstü", studyo: "MAPPA", puan: "8.6", liste: "aksiyon", video: "pkKu9hLT-t8",
+      ozet: "Lanetli bir parmağı yutan lise öğrencisi Yuji Itadori, büyücü okuluna girip lanetlerle savaşmaya başlar." },
+    { id: "chainsawman", ad: "Chainsaw Man", yil: 2022, bolum: "12 bölüm", tur: "Aksiyon · Korku", studyo: "MAPPA", puan: "8.4", liste: "aksiyon", video: "l96zmDlWCBk",
+      ozet: "Borç içindeki Denji, köpeği Pochita ile birleşince testere şeytanına dönüşür ve şeytan avcısı olarak çalışmaya başlar." },
+    { id: "sololeveling", ad: "Solo Leveling", yil: 2024, bolum: "12 bölüm", tur: "Aksiyon · Fantastik", studyo: "A-1 Pictures", puan: "8.2", liste: "aksiyon", video: "YvGSK8mIlt8",
+      ozet: "Dünyanın en zayıf avcısı Sung Jinwoo, gizemli bir sistem sayesinde tek başına seviye atlayabilen tek kişi olur." },
+    { id: "dandadan", ad: "DAN DA DAN", yil: 2024, bolum: "12 bölüm", tur: "Aksiyon · Komedi", studyo: "Science SARU", puan: "8.5", liste: "aksiyon", video: "usNUz9VEeVw",
+      ozet: "Biri uzaylılara, diğeri hayaletlere inanan iki lise öğrencisi, ikisinin de gerçek olduğunu anlayınca hayatları değişir." },
+    { id: "spy", ad: "SPY x FAMILY", yil: 2022, bolum: "25 bölüm", tur: "Komedi · Aksiyon", studyo: "Wit Studio · CloverWorks", puan: "8.5", liste: "dram", video: "6sosTNRw_uQ",
+      ozet: "Görevi için aile kurmak zorunda kalan bir casus, kimliğini gizlerken evlat edindiği kızın zihin okuduğunu bilmez." },
+    { id: "vinland2", ad: "Vinland Saga 2. Sezon", yil: 2023, bolum: "24 bölüm", tur: "Tarihi · Dram", studyo: "MAPPA", puan: "8.8", liste: "dram", video: "VHGotYh6hPM",
+      ozet: "İntikam peşindeki Thorfinn, köle olarak çalıştığı çiftlikte şiddetten arınmış bir hayatın mümkün olup olmadığını sorgular." }
+  ];
 
-    var detay = document.getElementById('detay');
-    var baslik = document.getElementById('detayBaslik');
-    var kunye = document.getElementById('detayKunye');
-    var ozet = document.getElementById('detayOzet');
-    var kapat = document.getElementById('detayKapat');
+  var haritasi = {};
+  animeler.forEach(function (a) { haritasi[a.id] = a; });
 
-    function ac(anahtar) {
-      var f = filmler[anahtar];
-      if (!f) { return; }
-      baslik.textContent = f.ad;
-      kunye.innerHTML = '';
-      [['puan', '★ ' + f.puan], ['', f.yil], ['', f.sure], ['', f.tur], ['', f.yon]].forEach(function (p) {
-        var s = document.createElement('span');
-        if (p[0]) { s.className = p[0]; }
-        s.textContent = p[1];
-        kunye.appendChild(s);
-      });
-      ozet.textContent = f.ozet;
-      detay.hidden = false;
-      kapat.focus();
-    }
+  /* ── Kartları yaz ─────────────────────────── */
+  function kartYap(a) {
+    var dugme = document.createElement('button');
+    dugme.className = 'kart';
+    dugme.type = 'button';
+    dugme.setAttribute('data-anime', a.id);
+    dugme.setAttribute('data-ad', a.ad.toLocaleLowerCase('tr'));
+    dugme.innerHTML =
+      '<span class="kapak">' +
+        '<img src="https://i.ytimg.com/vi/' + a.video + '/hqdefault.jpg" alt="' + a.ad + ' fragmanından kare" loading="lazy" width="480" height="360">' +
+        '<span class="oynat-isareti"><span aria-hidden="true">▶</span></span>' +
+        '<span class="sure">Fragman</span>' +
+      '</span>' +
+      '<h3></h3>' +
+      '<span class="meta"></span>';
+    dugme.querySelector('h3').textContent = a.ad;
+    dugme.querySelector('.meta').textContent = a.yil + ' · ' + a.studyo;
+    return dugme;
+  }
 
-    document.addEventListener('click', function (olay) {
-      var hedef = olay.target.closest('[data-film]');
-      if (hedef) { ac(hedef.getAttribute('data-film')); return; }
-      if (olay.target.closest('#detayKapat')) { detay.hidden = true; }
+  Array.prototype.forEach.call(document.querySelectorAll('.ray'), function (ray) {
+    var liste = ray.getAttribute('data-liste');
+    animeler.filter(function (a) { return a.liste === liste; }).forEach(function (a) { ray.appendChild(kartYap(a)); });
+    var adet = ray.parentElement.querySelector('.adet');
+    if (adet) { adet.textContent = ray.children.length + ' anime'; }
+  });
+
+  /* ── Tanıtım arka planı ───────────────────── */
+  var fon = document.getElementById('tanitimFon');
+  if (fon) { fon.style.backgroundImage = 'url("https://i.ytimg.com/vi/' + haritasi.frieren.video + '/maxresdefault.jpg")'; }
+
+  /* ── Oynatıcı ─────────────────────────────── */
+  var oynatici = document.getElementById('oynatici');
+  var cerceve = document.getElementById('cerceve');
+  var baslik = document.getElementById('oynaticiBaslik');
+  var kunye = document.getElementById('oynaticiKunye');
+  var ozet = document.getElementById('oynaticiOzet');
+  var kapatDugmesi = document.getElementById('oynaticiKapat');
+  var sonOdak = null;
+
+  function kunyeYaz(a) {
+    kunye.textContent = '';
+    var parcalar = [];
+    if (a.puan !== '—') { parcalar.push(['puan', '★ ' + a.puan]); }
+    parcalar.push(['', String(a.yil)], ['', a.bolum], ['', a.tur], ['etiket', a.studyo]);
+    parcalar.forEach(function (p) {
+      var s = document.createElement('span');
+      if (p[0]) { s.className = p[0]; }
+      s.textContent = p[1];
+      kunye.appendChild(s);
     });
+  }
 
-    document.addEventListener('keydown', function (olay) {
-      if (olay.key === 'Escape' && !detay.hidden) { detay.hidden = true; }
+  function ac(id) {
+    var a = haritasi[id];
+    if (!a) { return; }
+    sonOdak = document.activeElement;
+    baslik.textContent = a.ad;
+    kunyeYaz(a);
+    ozet.textContent = a.ozet;
+    cerceve.src = 'https://www.youtube-nocookie.com/embed/' + a.video + '?autoplay=1&rel=0&modestbranding=1';
+    oynatici.hidden = false;
+    document.body.style.overflow = 'hidden';
+    kapatDugmesi.focus();
+  }
+
+  function kapat() {
+    oynatici.hidden = true;
+    cerceve.src = '';
+    document.body.style.overflow = '';
+    if (sonOdak && sonOdak.focus) { sonOdak.focus(); }
+  }
+
+  document.addEventListener('click', function (olay) {
+    var hedef = olay.target.closest('[data-anime]');
+    if (hedef) { ac(hedef.getAttribute('data-anime')); return; }
+    if (olay.target.closest('#oynaticiKapat')) { kapat(); return; }
+    if (olay.target === oynatici) { kapat(); }
+  });
+
+  document.addEventListener('keydown', function (olay) {
+    if (olay.key === 'Escape' && !oynatici.hidden) { kapat(); }
+  });
+
+  /* ── Kaydırma düğmeleri ───────────────────── */
+  Array.prototype.forEach.call(document.querySelectorAll('.kaydir button'), function (dugme) {
+    dugme.addEventListener('click', function () {
+      var sira = dugme.closest('.sira');
+      var ray = sira && sira.querySelector('.ray');
+      if (!ray) { return; }
+      var yon = Number(dugme.getAttribute('data-yon')) || 1;
+      ray.scrollBy({ left: yon * ray.clientWidth * 0.85, behavior: 'smooth' });
     });
+  });
 
-    // Sıra kaydırma düğmeleri
-    Array.prototype.forEach.call(document.querySelectorAll('.kaydir button'), function (dugme) {
-      dugme.addEventListener('click', function () {
-        var sira = dugme.closest('.sira');
-        var ray = sira && sira.querySelector('.ray');
-        if (!ray) { return; }
-        var yon = Number(dugme.getAttribute('data-yon')) || 1;
-        ray.scrollBy({ left: yon * (ray.clientWidth * 0.8), behavior: 'smooth' });
-      });
-    });
-
-    // Listeme ekle
-    var ekle = document.getElementById('listeyeEkle');
-    if (ekle) {
-      ekle.addEventListener('click', function () {
-        var eklendi = ekle.textContent.trim().charAt(0) === '+';
-        ekle.textContent = eklendi ? '✓ Listemde' : '+ Listeme ekle';
-      });
-    }
-
-    // Arama: sıralardaki filmleri süzer
-    var arama = document.getElementById('arama');
-    if (arama) {
-      arama.addEventListener('input', function () {
-        var q = arama.value.trim().toLocaleLowerCase('tr');
-        Array.prototype.forEach.call(document.querySelectorAll('.film'), function (kart) {
-          var ad = (kart.querySelector('h3') || {}).textContent || '';
-          kart.hidden = q.length > 0 && ad.toLocaleLowerCase('tr').indexOf(q) === -1;
+  /* ── Arama ────────────────────────────────── */
+  var arama = document.getElementById('arama');
+  if (arama) {
+    arama.addEventListener('input', function () {
+      var q = arama.value.trim().toLocaleLowerCase('tr');
+      Array.prototype.forEach.call(document.querySelectorAll('.sira'), function (sira) {
+        var kartlar = sira.querySelectorAll('.kart');
+        var gorunen = 0;
+        Array.prototype.forEach.call(kartlar, function (kart) {
+          var uyuyor = q.length === 0 || kart.getAttribute('data-ad').indexOf(q) !== -1;
+          kart.hidden = !uyuyor;
+          if (uyuyor) { gorunen++; }
         });
-        Array.prototype.forEach.call(document.querySelectorAll('.sira'), function (sira) {
-          var gorunen = sira.querySelectorAll('.film:not([hidden])').length;
-          var adet = sira.querySelector('.adet');
-          if (adet) { adet.textContent = gorunen + ' film'; }
-        });
+        var adet = sira.querySelector('.adet');
+        if (adet) { adet.textContent = gorunen + ' anime'; }
+        var uyari = sira.querySelector('.bos-uyari');
+        if (uyari) { uyari.hidden = gorunen !== 0; }
       });
-    }
-  })();
+    });
+  }
+})();
 </script>
+</body>
+</html>
