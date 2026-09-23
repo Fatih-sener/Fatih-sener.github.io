@@ -1,0 +1,574 @@
+<title>PERDE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    --gece: #0B0B0E;
+    --yuzey: #15151B;
+    --yuzey2: #1D1D25;
+    --cizgi: #2A2A34;
+    --metin: #F4F1EA;
+    --soluk: #9E9AA8;
+    --altin: #F2C14E;
+    --gul: #C4708F;
+    --serif: "Instrument Serif", Georgia, serif;
+    --govde: "Archivo", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--gece);
+    color: var(--metin);
+    font-family: var(--govde);
+    font-size: 16px;
+    line-height: 1.55;
+    padding-inline: 0;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--altin); outline-offset: 3px; border-radius: 4px; }
+
+  .kenar { padding-inline: 20px; }
+  @media (min-width: 900px) { .kenar { padding-inline: 48px; } }
+
+  /* ── Üst menü ───────────────────────────────── */
+  .ust {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding-block: 14px;
+    background: linear-gradient(to bottom, rgba(11, 11, 14, 0.96), rgba(11, 11, 14, 0.72));
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(42, 42, 52, 0.7);
+  }
+  .marka {
+    font-family: var(--serif);
+    font-size: 27px;
+    letter-spacing: 0.22em;
+    color: var(--altin);
+    line-height: 1;
+  }
+  .ust nav { display: none; gap: 20px; font-size: 14px; color: var(--soluk); }
+  .ust nav a:hover { color: var(--metin); }
+  .ust nav a[aria-current="page"] { color: var(--metin); }
+  .ust-sag { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+  .ara {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 999px;
+    padding: 8px 14px;
+  }
+  .ara input {
+    background: transparent;
+    border: 0;
+    color: var(--metin);
+    font-family: var(--govde);
+    font-size: 14px;
+    width: 104px;
+    outline: none;
+  }
+  .ara input::placeholder { color: var(--soluk); }
+  .profil {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    background: linear-gradient(140deg, var(--gul), #7A4A5F);
+    display: grid;
+    place-items: center;
+    font-family: var(--serif);
+    font-size: 17px;
+    color: #14060C;
+  }
+  @media (min-width: 860px) { .ust nav { display: flex; } .ara input { width: 160px; } }
+
+  /* ── Tanıtım ────────────────────────────────── */
+  .tanitim {
+    position: relative;
+    display: grid;
+    gap: 28px;
+    padding-block: 44px 40px;
+    border-bottom: 1px solid var(--cizgi);
+  }
+  .tanitim::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(70% 90% at 12% 10%, rgba(242, 193, 78, 0.16), transparent 60%),
+      radial-gradient(60% 80% at 88% 30%, rgba(196, 112, 143, 0.15), transparent 62%);
+    pointer-events: none;
+  }
+  .tanitim > * { position: relative; }
+  .rozet {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--altin);
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .rozet::before { content: ""; width: 22px; height: 1px; background: var(--altin); }
+  .tanitim h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(44px, 11vw, 104px);
+    line-height: 0.92;
+    letter-spacing: -0.015em;
+    margin: 14px 0 0;
+    text-wrap: balance;
+  }
+  .tanitim h1 em { font-style: italic; color: var(--altin); }
+  .kunye {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--soluk);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    margin-top: 18px;
+    align-items: center;
+  }
+  .kunye .puan { color: var(--altin); }
+  .kunye .yas {
+    border: 1px solid var(--cizgi);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 11px;
+  }
+  .tanitim p.ozet { max-width: 52ch; color: #CFCBD6; margin: 16px 0 0; }
+  .eylemler { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+  .btn {
+    font-family: var(--govde);
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 13px 24px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  }
+  .btn.oynat { background: var(--altin); color: #17140A; }
+  .btn.oynat:hover { background: #F7D076; transform: translateY(-2px); }
+  .btn.ikincil { background: transparent; border-color: var(--cizgi); color: var(--metin); }
+  .btn.ikincil:hover { border-color: var(--gul); transform: translateY(-2px); }
+  .ilerleme { margin-top: 22px; max-width: 320px; }
+  .ilerleme .cubuk { height: 3px; background: var(--yuzey2); border-radius: 999px; overflow: hidden; }
+  .ilerleme .dolu { display: block; height: 100%; width: 38%; background: var(--altin); }
+  .ilerleme span.metin { font-family: var(--mono); font-size: 12px; color: var(--soluk); display: block; margin-top: 8px; }
+
+  /* ── Film sıraları ──────────────────────────── */
+  .sira { padding-block: 34px 6px; }
+  .sira-basi { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+  .sira-basi h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(22px, 3.4vw, 30px);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .sira-basi .adet { font-family: var(--mono); font-size: 12px; color: var(--soluk); }
+  .sira-basi .kaydir { margin-left: auto; display: flex; gap: 8px; }
+  .kaydir button {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--cizgi);
+    background: var(--yuzey);
+    color: var(--metin);
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 1;
+  }
+  .kaydir button:hover { border-color: var(--altin); color: var(--altin); }
+
+  .ray {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding-bottom: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--cizgi) transparent;
+  }
+  .ray::-webkit-scrollbar { height: 6px; }
+  .ray::-webkit-scrollbar-thumb { background: var(--cizgi); border-radius: 999px; }
+
+  .film {
+    flex: 0 0 auto;
+    width: 208px;
+    scroll-snap-align: start;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    color: inherit;
+  }
+  .afis {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    max-width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: linear-gradient(155deg, var(--a, #2A2A34), var(--b, #14141A) 78%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: transform 0.22s ease, border-color 0.22s ease;
+  }
+  .film:hover .afis, .film:focus-visible .afis { transform: translateY(-6px); border-color: var(--altin); }
+  .afis::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.045) 0 2px, transparent 2px 16px),
+      radial-gradient(120% 60% at 50% 0%, rgba(255,255,255,0.10), transparent 60%);
+  }
+  .afis .yazi {
+    position: relative;
+    font-family: var(--serif);
+    font-size: 27px;
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .afis .alt {
+    position: relative;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.72);
+    margin-top: 10px;
+  }
+  .film h3 { font-size: 15px; font-weight: 600; margin: 12px 0 2px; }
+  .film .meta { font-family: var(--mono); font-size: 12px; color: var(--soluk); }
+  .film .izlenen { height: 3px; background: var(--yuzey2); border-radius: 999px; margin-top: 10px; overflow: hidden; }
+  .film .izlenen b { display: block; height: 100%; background: var(--gul); }
+
+  /* ── Detay paneli ───────────────────────────── */
+  .detay {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 40;
+    background: var(--yuzey);
+    border-top: 1px solid var(--cizgi);
+    padding: 22px 20px calc(22px + env(safe-area-inset-bottom, 0px));
+    display: grid;
+    gap: 16px;
+    box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.55);
+  }
+  .detay h2 { font-family: var(--serif); font-weight: 400; font-size: 30px; margin: 0; }
+  .detay .kunye { margin-top: 0; }
+  .detay p { margin: 0; color: #CFCBD6; max-width: 62ch; }
+  .detay .kapat {
+    position: absolute;
+    top: 14px; right: 16px;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--cizgi);
+    background: var(--yuzey2);
+    color: var(--metin);
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+  }
+  .detay .kapat:hover { border-color: var(--altin); color: var(--altin); }
+  @media (min-width: 860px) {
+    .detay { inset: auto 48px 24px auto; width: 520px; border: 1px solid var(--cizgi); border-radius: 18px; }
+  }
+
+  footer {
+    margin-top: 48px;
+    padding-block: 26px 40px;
+    border-top: 1px solid var(--cizgi);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--soluk);
+    letter-spacing: 0.04em;
+  }
+  footer span:last-child { margin-left: auto; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } .ray { scroll-behavior: auto; } }
+</style>
+
+<header class="ust kenar">
+  <span class="marka">PERDE</span>
+  <nav>
+    <a href="#kesfet" aria-current="page">Keşfet</a>
+    <a href="#turk">Türk sineması</a>
+    <a href="#listem">Listem</a>
+  </nav>
+  <div class="ust-sag">
+    <label class="ara">
+      <span aria-hidden="true" style="color: var(--soluk); font-size: 14px;">⌕</span>
+      <input id="arama" type="search" placeholder="Film ara" aria-label="Film ara">
+    </label>
+    <span class="profil" aria-hidden="true">F</span>
+  </div>
+</header>
+
+<main>
+  <section class="tanitim kenar" id="kesfet">
+    <div>
+      <span class="rozet">Haftanın filmi</span>
+      <h1>Bir Zamanlar <em>Anadolu'da</em></h1>
+      <div class="kunye">
+        <span class="puan">★ 8.1</span>
+        <span>2011</span>
+        <span>2 sa 37 dk</span>
+        <span>Dram</span>
+        <span class="yas">13+</span>
+        <span>Nuri Bilge Ceylan</span>
+      </div>
+      <p class="ozet">Bir cinayetin izini sürmek için bozkıra çıkan savcı, doktor ve jandarma ekibi, gece boyunca hem cesedi hem kendi geçmişlerini arar.</p>
+      <div class="eylemler">
+        <button class="btn oynat" type="button" data-film="anadolu"><span aria-hidden="true">▶</span> Oynat</button>
+        <button class="btn ikincil" type="button" data-film="anadolu">Detaylar</button>
+        <button class="btn ikincil" type="button" id="listeyeEkle">+ Listeme ekle</button>
+      </div>
+      <div class="ilerleme">
+        <span class="cubuk" aria-hidden="true"><b class="dolu"></b></span>
+        <span class="metin">Kaldığın yer: 58. dakika</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sira kenar" id="devam">
+    <div class="sira-basi">
+      <h2>Devam et</h2>
+      <span class="adet">3 film</span>
+      <span class="kaydir"><button type="button" data-yon="-1" aria-label="Sola kaydır">‹</button><button type="button" data-yon="1" aria-label="Sağa kaydır">›</button></span>
+    </div>
+    <div class="ray">
+      <button class="film" type="button" data-film="uzak">
+        <span class="afis" style="--a:#3A3F4B; --b:#15171D;"><span class="yazi">Uzak</span><span class="alt">2002 · Dram</span></span>
+        <h3>Uzak</h3>
+        <span class="meta">1 sa 50 dk · %64</span>
+        <span class="izlenen"><b style="width: 64%;"></b></span>
+      </button>
+      <button class="film" type="button" data-film="masumiyet">
+        <span class="afis" style="--a:#4A3550; --b:#181019;"><span class="yazi">Masumiyet</span><span class="alt">1997 · Dram</span></span>
+        <h3>Masumiyet</h3>
+        <span class="meta">1 sa 50 dk · %22</span>
+        <span class="izlenen"><b style="width: 22%;"></b></span>
+      </button>
+      <button class="film" type="button" data-film="gemide">
+        <span class="afis" style="--a:#2E4A46; --b:#101A19;"><span class="yazi">Gemide</span><span class="alt">1998 · Dram</span></span>
+        <h3>Gemide</h3>
+        <span class="meta">1 sa 47 dk · %81</span>
+        <span class="izlenen"><b style="width: 81%;"></b></span>
+      </button>
+    </div>
+  </section>
+
+  <section class="sira kenar" id="turk">
+    <div class="sira-basi">
+      <h2>Türk sineması seçkisi</h2>
+      <span class="adet">6 film</span>
+      <span class="kaydir"><button type="button" data-yon="-1" aria-label="Sola kaydır">‹</button><button type="button" data-yon="1" aria-label="Sağa kaydır">›</button></span>
+    </div>
+    <div class="ray">
+      <button class="film" type="button" data-film="ahlat">
+        <span class="afis" style="--a:#5A4A2E; --b:#181410;"><span class="yazi">Ahlat Ağacı</span><span class="alt">2018 · Dram</span></span>
+        <h3>Ahlat Ağacı</h3>
+        <span class="meta">3 sa 8 dk · Nuri Bilge Ceylan</span>
+      </button>
+      <button class="film" type="button" data-film="kis">
+        <span class="afis" style="--a:#33424F; --b:#0F1519;"><span class="yazi">Kış Uykusu</span><span class="alt">2014 · Dram</span></span>
+        <h3>Kış Uykusu</h3>
+        <span class="meta">3 sa 16 dk · Nuri Bilge Ceylan</span>
+      </button>
+      <button class="film" type="button" data-film="eskiya">
+        <span class="afis" style="--a:#5A2E33; --b:#190F11;"><span class="yazi">Eşkıya</span><span class="alt">1996 · Suç</span></span>
+        <h3>Eşkıya</h3>
+        <span class="meta">2 sa 8 dk · Yavuz Turgul</span>
+      </button>
+      <button class="film" type="button" data-film="babam">
+        <span class="afis" style="--a:#3E5340; --b:#111713;"><span class="yazi">Babam ve Oğlum</span><span class="alt">2005 · Dram</span></span>
+        <h3>Babam ve Oğlum</h3>
+        <span class="meta">1 sa 48 dk · Çağan Irmak</span>
+      </button>
+      <button class="film" type="button" data-film="tabut">
+        <span class="afis" style="--a:#2F3A52; --b:#101218;"><span class="yazi">Tabutta Rövaşata</span><span class="alt">1996 · Dram</span></span>
+        <h3>Tabutta Rövaşata</h3>
+        <span class="meta">1 sa 15 dk · Derviş Zaim</span>
+      </button>
+      <button class="film" type="button" data-film="vizontele">
+        <span class="afis" style="--a:#57452E; --b:#181310;"><span class="yazi">Vizontele</span><span class="alt">2001 · Komedi</span></span>
+        <h3>Vizontele</h3>
+        <span class="meta">1 sa 50 dk · Yılmaz Erdoğan</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="sira kenar" id="listem">
+    <div class="sira-basi">
+      <h2>Listem</h2>
+      <span class="adet">4 film</span>
+      <span class="kaydir"><button type="button" data-yon="-1" aria-label="Sola kaydır">‹</button><button type="button" data-yon="1" aria-label="Sağa kaydır">›</button></span>
+    </div>
+    <div class="ray">
+      <button class="film" type="button" data-film="anadolu">
+        <span class="afis" style="--a:#4C4433; --b:#161410;"><span class="yazi">Bir Zamanlar Anadolu'da</span><span class="alt">2011 · Dram</span></span>
+        <h3>Bir Zamanlar Anadolu'da</h3>
+        <span class="meta">2 sa 37 dk · Nuri Bilge Ceylan</span>
+      </button>
+      <button class="film" type="button" data-film="sonsuzluk">
+        <span class="afis" style="--a:#39304C; --b:#121016;"><span class="yazi">Sonsuzluk ve Bir Gün</span><span class="alt">1998 · Dram</span></span>
+        <h3>Sonsuzluk ve Bir Gün</h3>
+        <span class="meta">2 sa 17 dk · Theo Angelopoulos</span>
+      </button>
+      <button class="film" type="button" data-film="yol">
+        <span class="afis" style="--a:#4A4238; --b:#151211;"><span class="yazi">Yol</span><span class="alt">1982 · Dram</span></span>
+        <h3>Yol</h3>
+        <span class="meta">1 sa 54 dk · Yılmaz Güney, Şerif Gören</span>
+      </button>
+      <button class="film" type="button" data-film="sürü">
+        <span class="afis" style="--a:#3F4A3A; --b:#121511;"><span class="yazi">Sürü</span><span class="alt">1978 · Dram</span></span>
+        <h3>Sürü</h3>
+        <span class="meta">1 sa 58 dk · Zeki Ökten</span>
+      </button>
+    </div>
+  </section>
+
+  <footer class="kenar">
+    <span>PERDE · örnek arayüz tasarımı</span>
+    <span>Tasarım: Fatih Şener</span>
+  </footer>
+</main>
+
+<aside class="detay" id="detay" hidden aria-live="polite">
+  <button class="kapat" type="button" id="detayKapat" aria-label="Detayı kapat">✕</button>
+  <h2 id="detayBaslik">Film</h2>
+  <div class="kunye" id="detayKunye"></div>
+  <p id="detayOzet"></p>
+  <div class="eylemler" style="margin-top: 4px;">
+    <button class="btn oynat" type="button"><span aria-hidden="true">▶</span> Oynat</button>
+    <button class="btn ikincil" type="button">Fragman</button>
+  </div>
+</aside>
+
+<script>
+  (function () {
+    var filmler = {
+      anadolu: { ad: "Bir Zamanlar Anadolu'da", yil: "2011", sure: "2 sa 37 dk", tur: "Dram", yon: "Nuri Bilge Ceylan", puan: "8.1",
+        ozet: "Bir cinayetin izini sürmek için bozkıra çıkan savcı, doktor ve jandarma ekibi, gece boyunca hem cesedi hem kendi geçmişlerini arar." },
+      uzak: { ad: "Uzak", yil: "2002", sure: "1 sa 50 dk", tur: "Dram", yon: "Nuri Bilge Ceylan", puan: "7.7",
+        ozet: "İstanbul'da yalnız yaşayan bir fotoğrafçının evine, iş aramak için taşradan gelen akrabası yerleşir. İki adamın sessiz çatışması." },
+      masumiyet: { ad: "Masumiyet", yil: "1997", sure: "1 sa 50 dk", tur: "Dram", yon: "Zeki Demirkubuz", puan: "8.2",
+        ozet: "Hapisten çıkan Yusuf'un, bir otelde tanıştığı Uğur ve Bekir'in hikâyesine karışmasıyla başlayan karanlık yolculuk." },
+      gemide: { ad: "Gemide", yil: "1998", sure: "1 sa 47 dk", tur: "Dram", yon: "Serdar Akar", puan: "8.2",
+        ozet: "İstanbul limanında demirli bir gemide yaşayan dört tayfanın, bir gece yaşadıkları olayla altüst olan düzeni." },
+      ahlat: { ad: "Ahlat Ağacı", yil: "2018", sure: "3 sa 8 dk", tur: "Dram", yon: "Nuri Bilge Ceylan", puan: "8.1",
+        ozet: "Üniversiteyi bitirip memleketine dönen Sinan, kitabını bastırmaya çalışırken babasıyla ve kasabayla hesaplaşır." },
+      kis: { ad: "Kış Uykusu", yil: "2014", sure: "3 sa 16 dk", tur: "Dram", yon: "Nuri Bilge Ceylan", puan: "8.1",
+        ozet: "Kapadokya'da otel işleten eski bir oyuncunun, kışın uzayan günlerinde karısı ve kız kardeşiyle yüzleşmesi." },
+      eskiya: { ad: "Eşkıya", yil: "1996", sure: "2 sa 8 dk", tur: "Suç", yon: "Yavuz Turgul", puan: "8.3",
+        ozet: "Otuz beş yıl sonra hapisten çıkan Baran, kaybettiği sevgilisini ve ihanetin izini aramak için İstanbul'a gelir." },
+      babam: { ad: "Babam ve Oğlum", yil: "2005", sure: "1 sa 48 dk", tur: "Dram", yon: "Çağan Irmak", puan: "8.2",
+        ozet: "Yıllar sonra oğluyla birlikte baba evine dönen Sadık'ın, geçmişteki kırgınlıkları onarma çabası." },
+      tabut: { ad: "Tabutta Rövaşata", yil: "1996", sure: "1 sa 15 dk", tur: "Dram", yon: "Derviş Zaim", puan: "8.0",
+        ozet: "Rumelihisarı'nda yaşayan evsiz Mahsun'un, geceleri araba çalıp sabah geri bırakma alışkanlığı üzerinden anlatılan hikâye." },
+      vizontele: { ad: "Vizontele", yil: "2001", sure: "1 sa 50 dk", tur: "Komedi", yon: "Yılmaz Erdoğan", puan: "8.0",
+        ozet: "1970'lerde Hakkâri'de bir kasabaya televizyonun gelişi ve kasabalının bu yeni aletle imtihanı." },
+      sonsuzluk: { ad: "Sonsuzluk ve Bir Gün", yil: "1998", sure: "2 sa 17 dk", tur: "Dram", yon: "Theo Angelopoulos", puan: "7.9",
+        ozet: "Ölümcül hasta bir yazarın son gününde, sokakta tanıştığı çocukla birlikte geçmişine yaptığı yolculuk." },
+      yol: { ad: "Yol", yil: "1982", sure: "1 sa 54 dk", tur: "Dram", yon: "Yılmaz Güney, Şerif Gören", puan: "8.0",
+        ozet: "Bir haftalık izne çıkan beş mahkûmun, memleketlerine döndüklerinde karşılaştıkları gerçekler." },
+      "sürü": { ad: "Sürü", yil: "1978", sure: "1 sa 58 dk", tur: "Dram", yon: "Zeki Ökten", puan: "8.1",
+        ozet: "Koyun sürüsünü satmak için Ankara'ya giden bir ailenin yolculuğu ve dağılışı." }
+    };
+
+    var detay = document.getElementById('detay');
+    var baslik = document.getElementById('detayBaslik');
+    var kunye = document.getElementById('detayKunye');
+    var ozet = document.getElementById('detayOzet');
+    var kapat = document.getElementById('detayKapat');
+
+    function ac(anahtar) {
+      var f = filmler[anahtar];
+      if (!f) { return; }
+      baslik.textContent = f.ad;
+      kunye.innerHTML = '';
+      [['puan', '★ ' + f.puan], ['', f.yil], ['', f.sure], ['', f.tur], ['', f.yon]].forEach(function (p) {
+        var s = document.createElement('span');
+        if (p[0]) { s.className = p[0]; }
+        s.textContent = p[1];
+        kunye.appendChild(s);
+      });
+      ozet.textContent = f.ozet;
+      detay.hidden = false;
+      kapat.focus();
+    }
+
+    document.addEventListener('click', function (olay) {
+      var hedef = olay.target.closest('[data-film]');
+      if (hedef) { ac(hedef.getAttribute('data-film')); return; }
+      if (olay.target.closest('#detayKapat')) { detay.hidden = true; }
+    });
+
+    document.addEventListener('keydown', function (olay) {
+      if (olay.key === 'Escape' && !detay.hidden) { detay.hidden = true; }
+    });
+
+    // Sıra kaydırma düğmeleri
+    Array.prototype.forEach.call(document.querySelectorAll('.kaydir button'), function (dugme) {
+      dugme.addEventListener('click', function () {
+        var sira = dugme.closest('.sira');
+        var ray = sira && sira.querySelector('.ray');
+        if (!ray) { return; }
+        var yon = Number(dugme.getAttribute('data-yon')) || 1;
+        ray.scrollBy({ left: yon * (ray.clientWidth * 0.8), behavior: 'smooth' });
+      });
+    });
+
+    // Listeme ekle
+    var ekle = document.getElementById('listeyeEkle');
+    if (ekle) {
+      ekle.addEventListener('click', function () {
+        var eklendi = ekle.textContent.trim().charAt(0) === '+';
+        ekle.textContent = eklendi ? '✓ Listemde' : '+ Listeme ekle';
+      });
+    }
+
+    // Arama: sıralardaki filmleri süzer
+    var arama = document.getElementById('arama');
+    if (arama) {
+      arama.addEventListener('input', function () {
+        var q = arama.value.trim().toLocaleLowerCase('tr');
+        Array.prototype.forEach.call(document.querySelectorAll('.film'), function (kart) {
+          var ad = (kart.querySelector('h3') || {}).textContent || '';
+          kart.hidden = q.length > 0 && ad.toLocaleLowerCase('tr').indexOf(q) === -1;
+        });
+        Array.prototype.forEach.call(document.querySelectorAll('.sira'), function (sira) {
+          var gorunen = sira.querySelectorAll('.film:not([hidden])').length;
+          var adet = sira.querySelector('.adet');
+          if (adet) { adet.textContent = gorunen + ' film'; }
+        });
+      });
+    }
+  })();
+</script>
